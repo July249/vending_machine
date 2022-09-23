@@ -1,0 +1,110 @@
+/* Resets */
+html,
+body,
+h1,
+h2 {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.txt-hide {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+/* global setting */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fff;
+}
+
+/* Purchase Page */
+#purchase {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* temp-outline */
+  background-color: bisque;
+}
+
+.logo {
+  width: 166px;
+  margin: 0 auto;
+  /* temp-outline */
+  height: 78px;
+  background-color: aqua;
+}
+
+.item_menu {
+  margin: 15px 27px 6px;
+  /* temp-outline */
+  width: 306px;
+  height: 272px;
+  background-color: orange;
+}
+
+.counter {
+  margin: 11px 27px;
+  height: 246px;
+  /* temp-outline */
+  width: 306px;
+  background-color: chartreuse;
+}
+
+/* Purchase History Page */
+#purchase_history {
+  /* temp-outline */
+  background-color: aquamarine;
+}
+
+.history_title {
+  margin: 30px auto 13px;
+  text-align: center;
+  /* temp-outline */
+  background-color: red;
+}
+
+.item_box {
+  width: 306px;
+  height: 364px;
+  margin: 0 auto;
+  padding: 12px 12px;
+  /* temp-outline */
+  background-color: lightgray;
+}
+
+.item_lists {
+}
+
+.item {
+}
+
+.expense_result {
+  background-color: cornflowerblue;
+  width: 306px;
+  margin: 6px auto 0;
+  text-align: end;
+}
+
+.total_cost::before {
+  content: '총금액 : ';
+}
+
+.total_cost::after {
+  content: ' 원';
+}
