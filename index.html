@@ -9,29 +9,191 @@
   </head>
   <body>
     <!-- mobile -->
-    <section id="purchase">
-      <header>
-        <h1 class="txt-hide">콜라콜라</h1>
-        <p class="txt-hide">콜라콜라 매장을 방문해주셔서 감사합니다!</p>
-        <div class="logo">로고</div>
-      </header>
-      <div class="item_menu">아이템들</div>
-      <div class="counter">계산대</div>
-    </section>
-    <section id="purchase_history">
-      <h2 class="history_title">획득한 음료</h2>
-      <div class="item_box">
-        구매리스트
-        <!-- <ul class="item_lists">
-          <li id="item1" class="item"></li>
-          <li id="item2" class="item"></li>
-          <li id="item3" class="item"></li>
-          <li id="item4" class="item"></li>
-        </ul> -->
-      </div>
-      <p class="expense_result">
-        <span id="total_cost" class="total_cost">9,000</span>
+    <header class="header">
+      <h1 class="app_title txt-hide">콜라콜라</h1>
+      <p class="welcome_Msg txt-hide">
+        콜라콜라 매장을 방문해주셔서 감사합니다!
       </p>
-    </section>
+      <div class="logo">
+        <img class="img_logo" src="./img/Logo.png" alt="" />
+      </div>
+    </header>
+    <main id="app">
+      <section id="purchase">
+        <div class="item_menu">
+          <div id="product1" class="btn-item selected">
+            <figure class="item_image_fig">
+              이미지
+              <p>coke</p>
+            </figure>
+            <p>1000원</p>
+          </div>
+          <div id="product2" class="btn-item">
+            <figure class="item_image_fig">
+              이미지
+              <p>coke</p>
+            </figure>
+            <p>1000원</p>
+          </div>
+          <div id="product3" class="btn-item">
+            <figure class="item_image_fig">
+              이미지
+              <p>coke</p>
+            </figure>
+            <p>1000원</p>
+          </div>
+          <div id="product4" class="btn-item">
+            <figure class="item_image_fig">
+              이미지
+              <p>coke</p>
+            </figure>
+            <p>1000원</p>
+          </div>
+          <div id="product5" class="btn-item">
+            <figure class="item_image_fig">
+              이미지
+              <p>coke</p>
+            </figure>
+            <p>1000원</p>
+          </div>
+          <div id="product6" class="btn-item">
+            <figure class="item_image_fig">
+              이미지
+              <p>coke</p>
+            </figure>
+            <p>1000원</p>
+          </div>
+        </div>
+        <div class="counter">
+          <div class="counter_function">
+            <p class="show-change">
+              잔액 : <span id="change-amount" class="money">1,000 원</span>
+            </p>
+          </div>
+          <div class="counter_function">
+            <button type="button" class="btn-change">거스름돈 반환</button>
+          </div>
+          <div class="counter_function">
+            <input
+              type="text"
+              class="input-send"
+              placeholder="입금액 입력"
+              required
+            />
+          </div>
+          <div class="counter_function">
+            <button type="submit" class="btn-send">입금</button>
+          </div>
+          <div class="counter_function">
+            <ul class="item_lists">
+              <li class="item">
+                <figure class="item_image_fig">
+                  이미지
+                  <p>coke</p>
+                </figure>
+                <div class="item_number">1</div>
+              </li>
+              <li class="item">
+                <figure class="item_image_fig">
+                  이미지
+                  <p>coke</p>
+                </figure>
+                <div class="item_number">1</div>
+              </li>
+              <li class="item">
+                <figure class="item_image_fig">
+                  이미지
+                  <p>coke</p>
+                </figure>
+                <div class="item_number">1</div>
+              </li>
+              <li class="item">
+                <figure class="item_image_fig">
+                  이미지
+                  <p>coke</p>
+                </figure>
+                <div class="item_number">1</div>
+              </li>
+            </ul>
+          </div>
+          <div class="counter_function">
+            <button type="submit" class="btn-purchase">획득</button>
+          </div>
+        </div>
+      </section>
+      <section id="purchase_history">
+        <h2 class="history_title txt-hide">구매내역 및 소지한 금액 확인</h2>
+        <div class="my_pocket">
+          <p>소지금 :<span id="input_cash" class="money">0 원</span></p>
+        </div>
+        <div class="purchase_list">
+          <h3 class="purchase_list_title">획득한 음료</h3>
+          <div class="item_box">
+            <ul class="item_lists">
+              <li id="item1" class="item">
+                <figure class="item_image_fig">
+                  이미지
+                  <p>coke</p>
+                </figure>
+                <div class="item_number">1</div>
+              </li>
+              <li id="item2" class="item">
+                <figure class="item_image_fig">
+                  이미지
+                  <p>coke</p>
+                </figure>
+                <div class="item_number">1</div>
+              </li>
+              <li id="item3" class="item">
+                <figure class="item_image_fig">
+                  이미지
+                  <p>coke</p>
+                </figure>
+                <div class="item_number">1</div>
+              </li>
+              <li id="item4" class="item">
+                <figure class="item_image_fig">
+                  이미지
+                  <p>coke</p>
+                </figure>
+                <div class="item_number">1</div>
+              </li>
+              <li id="item5" class="item">
+                <figure class="item_image_fig">
+                  이미지
+                  <p>coke</p>
+                </figure>
+                <div class="item_number">1</div>
+              </li>
+              <li id="item6" class="item">
+                <figure class="item_image_fig">
+                  이미지
+                  <p>coke</p>
+                </figure>
+                <div class="item_number">1</div>
+              </li>
+              <li id="item7" class="item">
+                <figure class="item_image_fig">
+                  이미지
+                  <p>coke</p>
+                </figure>
+                <div class="item_number">1</div>
+              </li>
+              <li id="item8" class="item">
+                <figure class="item_image_fig">
+                  이미지
+                  <p>coke</p>
+                </figure>
+                <div class="item_number">1</div>
+              </li>
+            </ul>
+          </div>
+          <p class="expense_result">
+            <span class="txt-hide">총금액 :</span>
+            <span id="total_cost" class="money">0 원</span>
+          </p>
+        </div>
+      </section>
+    </main>
   </body>
 </html>

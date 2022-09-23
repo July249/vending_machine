@@ -2,15 +2,27 @@
 html,
 body,
 h1,
-h2 {
+h2,
+h3,
+p {
   margin: 0;
   padding: 0;
 }
 
 h1,
-h2 {
+h2,
+h3 {
   font-size: inherit;
   font-weight: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+figure {
+  margin: 0;
 }
 
 .txt-hide {
@@ -29,7 +41,24 @@ h2 {
 }
 
 body {
-  background-color: #fff;
+  background: #fff;
+}
+
+/* header */
+.header .logo {
+  width: 166px;
+  margin: 0 auto;
+}
+
+.header .img_logo {
+  width: 100%;
+  height: 100%;
+}
+
+/* app */
+#app {
+  display: flex;
+  flex-direction: column;
 }
 
 /* Purchase Page */
@@ -42,15 +71,10 @@ body {
   background-color: bisque;
 }
 
-.logo {
-  width: 166px;
-  margin: 0 auto;
-  /* temp-outline */
-  height: 78px;
-  background-color: aqua;
-}
-
 .item_menu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
   margin: 15px 27px 6px;
   /* temp-outline */
   width: 306px;
@@ -58,22 +82,141 @@ body {
   background-color: orange;
 }
 
+.item_menu .btn-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 94px;
+  border-radius: 10px;
+  background-color: #fff;
+  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.5));
+  cursor: pointer;
+}
+
+.item_menu .btn-item:hover {
+  border: 3px solid #6327fe;
+}
+
+.item_menu .btn-item.selected {
+  border: 3px solid #6327fe;
+}
+
 .counter {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
   margin: 11px 27px;
-  height: 246px;
-  /* temp-outline */
   width: 306px;
+  /* temp-outline */
   background-color: chartreuse;
+}
+
+.counter_function {
+  border-radius: 5px;
+  /* temp-outline */
+  background-color: #6327fe;
+}
+
+.counter_function:nth-child(1) {
+  grid-area: 1 / 1 / span 1 / span 2;
+  width: 200px;
+  height: 33px;
+  background: #eae8fe;
+}
+
+.counter_function:nth-child(3) {
+  grid-area: 2 / 1 / span 1 / span 2;
+  width: 200px;
+  height: 33px;
+  /* temp-outline */
+  background-color: #fff;
+}
+
+.counter_function:nth-child(5) {
+  grid-area: 3 / 1 / span 1 / span 2;
+  width: 200px;
+  height: 106px;
+  padding: 12px 12px;
+  background: #eae8fe;
+  overflow-y: scroll;
+}
+
+.counter_function:nth-child(even) {
+  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.5));
+}
+
+.btn-change {
+}
+
+.item_lists {
+  margin: 0 6px 0 0;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  margin-bottom: 6px;
+}
+
+.item .item_image_fig {
+  margin-left: 10px;
+}
+
+.item_number {
+  width: 30px;
+  height: 30px;
+  margin: 8px 8px 8px 0;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 20px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 /* Purchase History Page */
 #purchase_history {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
   /* temp-outline */
-  background-color: aquamarine;
 }
 
-.history_title {
-  margin: 30px auto 13px;
+.my_pocket {
+  width: 360px;
+  height: 50px;
+  padding: 9px 27px;
+  margin-bottom: 22px;
+  background-color: #fff;
+}
+
+.my_pocket p {
+  width: 306px;
+  background-color: #eae8fe;
+  padding: 6px 10px;
+}
+
+.money {
+  float: right;
+}
+
+.money::before {
+  content: ' ';
+  display: inline-block;
+  width: 6px;
+}
+
+.purchase_list {
+  background-color: #fff;
+}
+
+.purchase_list_title {
+  margin: 32px auto 13px;
   text-align: center;
   /* temp-outline */
   background-color: red;
@@ -86,25 +229,35 @@ body {
   padding: 12px 12px;
   /* temp-outline */
   background-color: lightgray;
-}
-
-.item_lists {
-}
-
-.item {
+  overflow-y: scroll;
 }
 
 .expense_result {
-  background-color: cornflowerblue;
   width: 306px;
   margin: 6px auto 0;
   text-align: end;
+  /* temp-outline */
+  background-color: cornflowerblue;
 }
 
-.total_cost::before {
+.expense_result::before {
   content: '총금액 : ';
 }
 
-.total_cost::after {
-  content: ' 원';
+@media screen and (min-width: 768) {
+  body {
+    background: #eae8fe;
+  }
+
+  #app {
+    flex-direction: row;
+  }
+
+  #purchase {
+    margin-left: 12px;
+  }
+
+  .my_pocket {
+    margin-bottom: 22px;
+  }
 }
