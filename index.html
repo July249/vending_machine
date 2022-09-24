@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <!-- mobile -->
-    <header class="header">
+    <!-- header -->
+    <header id="header">
       <h1 class="app_title txt-hide">콜라콜라</h1>
       <p class="welcome_Msg txt-hide">
         콜라콜라 매장을 방문해주셔서 감사합니다!
@@ -18,50 +18,90 @@
         <img class="img_logo" src="./img/Logo.png" alt="" />
       </div>
     </header>
-    <main id="app">
+    <!-- app -->
+    <main id="container">
+      <!-- purchase page -->
       <section id="purchase">
         <div class="item_menu">
           <div id="product1" class="btn-item selected">
+            <div class="sold_out_background">
+              <img class="img-sold_out" src="./img/sold_out.png" alt="품절" />
+            </div>
             <figure class="item_image_fig">
-              이미지
-              <p>coke</p>
+              <img
+                class="img_item"
+                src="./img/coke_red.png"
+                alt="오리지널 콜라"
+              />
+              <figcaption class="img_item_desc">Original_Cola</figcaption>
             </figure>
-            <p>1000원</p>
+            <p class="item_price">1000원</p>
           </div>
           <div id="product2" class="btn-item">
+            <div class="sold_out_background">
+              <img class="img-sold_out" src="./img/sold_out.png" alt="품절" />
+            </div>
             <figure class="item_image_fig">
-              이미지
-              <p>coke</p>
+              <img
+                class="img_item"
+                src="./img/coke_purple.png"
+                alt="보라색 콜라"
+              />
+              <figcaption class="img_item_desc">Violet_Cola</figcaption>
             </figure>
-            <p>1000원</p>
+            <p class="item_price">1000원</p>
           </div>
           <div id="product3" class="btn-item">
+            <div class="sold_out_background">
+              <img class="img-sold_out" src="./img/sold_out.png" alt="품절" />
+            </div>
             <figure class="item_image_fig">
-              이미지
-              <p>coke</p>
+              <img
+                class="img_item"
+                src="./img/coke_yellow.png"
+                alt="노란색 콜라"
+              />
+              <figcaption class="img_item_desc">Yellow_Cola</figcaption>
             </figure>
-            <p>1000원</p>
+            <p class="item_price">1000원</p>
           </div>
           <div id="product4" class="btn-item">
+            <div class="sold_out_background">
+              <img class="img-sold_out" src="./img/sold_out.png" alt="품절" />
+            </div>
             <figure class="item_image_fig">
-              이미지
-              <p>coke</p>
+              <img class="img_item" src="./img/coke_blue.png" alt="쿨 콜라" />
+              <figcaption class="img_item_desc">Cool_Cola</figcaption>
             </figure>
-            <p>1000원</p>
+            <p class="item_price">1000원</p>
           </div>
-          <div id="product5" class="btn-item">
+          <div id="product5" class="btn-item selected">
+            <div class="sold_out_background">
+              <img class="img-sold_out" src="./img/sold_out.png" alt="품절" />
+            </div>
             <figure class="item_image_fig">
-              이미지
-              <p>coke</p>
+              <img
+                class="img_item"
+                src="./img/coke_green.png"
+                alt="녹색 콜라"
+              />
+              <figcaption class="img_item_desc">Green_Cola</figcaption>
             </figure>
-            <p>1000원</p>
+            <p class="item_price">1000원</p>
           </div>
           <div id="product6" class="btn-item">
+            <div class="sold_out_background">
+              <img class="img-sold_out" src="./img/sold_out.png" alt="품절" />
+            </div>
             <figure class="item_image_fig">
-              이미지
-              <p>coke</p>
+              <img
+                class="img_item"
+                src="./img/coke_orange.png"
+                alt="오렌지색 콜라"
+              />
+              <figcaption class="img_item_desc">Orange_Cola</figcaption>
             </figure>
-            <p>1000원</p>
+            <p class="item_price">1000원</p>
           </div>
         </div>
         <div class="counter">
@@ -76,7 +116,8 @@
           <div class="counter_function">
             <input
               type="text"
-              class="input-send"
+              id="deposit"
+              class="input-deposit"
               placeholder="입금액 입력"
               required
             />
@@ -84,35 +125,51 @@
           <div class="counter_function">
             <button type="submit" class="btn-send">입금</button>
           </div>
-          <div class="counter_function">
+          <div class="counter_function item_basket">
             <ul class="item_lists">
-              <li class="item">
+              <li id="item1" class="item">
                 <figure class="item_image_fig">
-                  이미지
-                  <p>coke</p>
+                  <img
+                    class="img_item"
+                    src="./img/coke_red.png"
+                    alt="오리지널 콜라"
+                  />
+                  <figcaption class="img_item_desc">Original_Cola</figcaption>
                 </figure>
                 <div class="item_number">1</div>
               </li>
-              <li class="item">
+              <li id="item2" class="item">
                 <figure class="item_image_fig">
-                  이미지
-                  <p>coke</p>
+                  <img
+                    class="img_item"
+                    src="./img/coke_green.png"
+                    alt="녹색 콜라"
+                  />
+                  <figcaption class="img_item_desc">Green_Cola</figcaption>
                 </figure>
-                <div class="item_number">1</div>
+                <div class="item_number">2</div>
               </li>
-              <li class="item">
+              <li id="item3" class="item">
                 <figure class="item_image_fig">
-                  이미지
-                  <p>coke</p>
+                  <img
+                    class="img_item"
+                    src="./img/coke_blue.png"
+                    alt="쿨 콜라"
+                  />
+                  <figcaption class="img_item_desc">Cool_Cola</figcaption>
                 </figure>
-                <div class="item_number">1</div>
+                <div class="item_number">3</div>
               </li>
-              <li class="item">
+              <li id="item4" class="item">
                 <figure class="item_image_fig">
-                  이미지
-                  <p>coke</p>
+                  <img
+                    class="img_item"
+                    src="./img/coke_orange.png"
+                    alt="오렌지 콜라"
+                  />
+                  <figcaption class="img_item_desc">Orange_Cola</figcaption>
                 </figure>
-                <div class="item_number">1</div>
+                <div class="item_number">4</div>
               </li>
             </ul>
           </div>
@@ -128,63 +185,51 @@
         </div>
         <div class="purchase_list">
           <h3 class="purchase_list_title">획득한 음료</h3>
-          <div class="item_box">
+          <div class="item_box item_basket">
             <ul class="item_lists">
               <li id="item1" class="item">
                 <figure class="item_image_fig">
-                  이미지
-                  <p>coke</p>
+                  <img
+                    class="img_item"
+                    src="./img/coke_red.png"
+                    alt="오리지널 콜라"
+                  />
+                  <figcaption class="img_item_desc">Original_Cola</figcaption>
                 </figure>
                 <div class="item_number">1</div>
               </li>
               <li id="item2" class="item">
                 <figure class="item_image_fig">
-                  이미지
-                  <p>coke</p>
+                  <img
+                    class="img_item"
+                    src="./img/coke_green.png"
+                    alt="녹색 콜라"
+                  />
+                  <figcaption class="img_item_desc">Green_Cola</figcaption>
                 </figure>
-                <div class="item_number">1</div>
+                <div class="item_number">2</div>
               </li>
               <li id="item3" class="item">
                 <figure class="item_image_fig">
-                  이미지
-                  <p>coke</p>
+                  <img
+                    class="img_item"
+                    src="./img/coke_blue.png"
+                    alt="쿨 콜라"
+                  />
+                  <figcaption class="img_item_desc">Cool_Cola</figcaption>
                 </figure>
-                <div class="item_number">1</div>
+                <div class="item_number">3</div>
               </li>
               <li id="item4" class="item">
                 <figure class="item_image_fig">
-                  이미지
-                  <p>coke</p>
+                  <img
+                    class="img_item"
+                    src="./img/coke_orange.png"
+                    alt="오렌지 콜라"
+                  />
+                  <figcaption class="img_item_desc">Orange_Cola</figcaption>
                 </figure>
-                <div class="item_number">1</div>
-              </li>
-              <li id="item5" class="item">
-                <figure class="item_image_fig">
-                  이미지
-                  <p>coke</p>
-                </figure>
-                <div class="item_number">1</div>
-              </li>
-              <li id="item6" class="item">
-                <figure class="item_image_fig">
-                  이미지
-                  <p>coke</p>
-                </figure>
-                <div class="item_number">1</div>
-              </li>
-              <li id="item7" class="item">
-                <figure class="item_image_fig">
-                  이미지
-                  <p>coke</p>
-                </figure>
-                <div class="item_number">1</div>
-              </li>
-              <li id="item8" class="item">
-                <figure class="item_image_fig">
-                  이미지
-                  <p>coke</p>
-                </figure>
-                <div class="item_number">1</div>
+                <div class="item_number">4</div>
               </li>
             </ul>
           </div>
