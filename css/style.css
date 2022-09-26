@@ -79,7 +79,8 @@ body {
 }
 
 /* Purchase Page */
-#purchase {
+#purchase,
+#purchase_history {
   width: 360px;
   display: flex;
   flex-direction: column;
@@ -338,14 +339,6 @@ button {
 }
 
 /* Purchase History Page */
-#purchase_history {
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  /* temp-outline */
-  width: 360px;
-}
-
 .my_pocket {
   height: 50px;
   padding: 9px 27px;
