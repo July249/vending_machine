@@ -122,9 +122,12 @@ body {
   margin: -3px;
 }
 
-.sold_out_background {
+.sold_out_background.off {
   display: none;
-  /* display: block; */
+}
+
+.sold_out_background.on {
+  display: block;
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.8);
@@ -264,6 +267,7 @@ button {
   overflow-y: scroll;
   border-top: 9px solid transparent;
   border-right: 4px solid transparent;
+  border-bottom: 8px solid transparent;
 }
 
 .item_basket::-webkit-scrollbar {
@@ -282,9 +286,6 @@ button {
 
 .item_basket::-webkit-scrollber-track {
   background: transparent;
-}
-
-.item_lists {
 }
 
 .item {

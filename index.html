@@ -22,9 +22,10 @@
     <main id="container">
       <!-- purchase page -->
       <section id="purchase">
+        <h2 class="txt-hide">구매페이지</h2>
         <div class="item_menu">
           <div id="product1" class="btn-item selected">
-            <div class="sold_out_background">
+            <div class="sold_out_background off">
               <img class="img-sold_out" src="./img/sold_out.png" alt="품절" />
             </div>
             <figure class="item_image_fig">
@@ -37,8 +38,8 @@
             </figure>
             <p class="item_price">1000원</p>
           </div>
-          <div id="product2" class="btn-item">
-            <div class="sold_out_background">
+          <div id="product2" class="btn-item sold_out">
+            <div class="sold_out_background on">
               <img class="img-sold_out" src="./img/sold_out.png" alt="품절" />
             </div>
             <figure class="item_image_fig">
@@ -52,7 +53,7 @@
             <p class="item_price">1000원</p>
           </div>
           <div id="product3" class="btn-item">
-            <div class="sold_out_background">
+            <div class="sold_out_background off">
               <img class="img-sold_out" src="./img/sold_out.png" alt="품절" />
             </div>
             <figure class="item_image_fig">
@@ -66,7 +67,7 @@
             <p class="item_price">1000원</p>
           </div>
           <div id="product4" class="btn-item">
-            <div class="sold_out_background">
+            <div class="sold_out_background off">
               <img class="img-sold_out" src="./img/sold_out.png" alt="품절" />
             </div>
             <figure class="item_image_fig">
@@ -76,7 +77,7 @@
             <p class="item_price">1000원</p>
           </div>
           <div id="product5" class="btn-item selected">
-            <div class="sold_out_background">
+            <div class="sold_out_background off">
               <img class="img-sold_out" src="./img/sold_out.png" alt="품절" />
             </div>
             <figure class="item_image_fig">
@@ -90,7 +91,7 @@
             <p class="item_price">1000원</p>
           </div>
           <div id="product6" class="btn-item">
-            <div class="sold_out_background">
+            <div class="sold_out_background off">
               <img class="img-sold_out" src="./img/sold_out.png" alt="품절" />
             </div>
             <figure class="item_image_fig">
@@ -126,8 +127,10 @@
             <button type="submit" class="btn-send">입금</button>
           </div>
           <div class="counter_function item_basket">
+            <!-- 취소 버튼이 없다! -->
+            <!-- 취소 기능을 추가하기 위한 요소를 추가했으면 좋겠다 -->
             <ul class="item_lists">
-              <li id="item1" class="item">
+              <li class="item">
                 <figure class="item_image_fig">
                   <img
                     class="img_item"
@@ -138,7 +141,7 @@
                 </figure>
                 <div class="item_number">1</div>
               </li>
-              <li id="item2" class="item">
+              <li class="item">
                 <figure class="item_image_fig">
                   <img
                     class="img_item"
@@ -149,7 +152,7 @@
                 </figure>
                 <div class="item_number">2</div>
               </li>
-              <li id="item3" class="item">
+              <li class="item">
                 <figure class="item_image_fig">
                   <img
                     class="img_item"
@@ -160,7 +163,7 @@
                 </figure>
                 <div class="item_number">3</div>
               </li>
-              <li id="item4" class="item">
+              <li class="item">
                 <figure class="item_image_fig">
                   <img
                     class="img_item"
@@ -174,6 +177,8 @@
             </ul>
           </div>
           <div class="counter_function">
+            <!-- 획득 눌렀을 때 alert를 발생시킨다 -->
+            <!-- 사용자의 구매 의사를 한번 더 묻는다 -->
             <button type="submit" class="btn-purchase">획득</button>
           </div>
         </div>
@@ -181,13 +186,13 @@
       <section id="purchase_history">
         <h2 class="history_title txt-hide">구매내역 및 소지한 금액 확인</h2>
         <div class="my_pocket">
-          <p>소지금 :<span id="input_cash" class="money">0 원</span></p>
+          <p>소지금 :<span id="input_cash" class="money">25,000 원</span></p>
         </div>
         <div class="purchase_list">
           <h3 class="purchase_list_title">획득한 음료</h3>
           <div class="item_box item_basket">
             <ul class="item_lists">
-              <li id="item1" class="item">
+              <li class="item">
                 <figure class="item_image_fig">
                   <img
                     class="img_item"
@@ -198,7 +203,7 @@
                 </figure>
                 <div class="item_number">1</div>
               </li>
-              <li id="item2" class="item">
+              <li class="item">
                 <figure class="item_image_fig">
                   <img
                     class="img_item"
@@ -209,7 +214,7 @@
                 </figure>
                 <div class="item_number">2</div>
               </li>
-              <li id="item3" class="item">
+              <li class="item">
                 <figure class="item_image_fig">
                   <img
                     class="img_item"
@@ -220,7 +225,7 @@
                 </figure>
                 <div class="item_number">3</div>
               </li>
-              <li id="item4" class="item">
+              <li class="item">
                 <figure class="item_image_fig">
                   <img
                     class="img_item"
@@ -235,7 +240,7 @@
           </div>
           <p class="expense_result">
             <span class="txt-hide">총금액 :</span>
-            <span id="total_cost" class="money">0 원</span>
+            <span id="total_cost" class="money">9,000 원</span>
           </p>
         </div>
       </section>
