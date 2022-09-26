@@ -363,6 +363,7 @@ button {
 }
 
 .purchase_list {
+  width: 360px;
   background-color: #fff;
 }
 
