@@ -28,68 +28,7 @@
         <!-- ir: 화면에 보일 필요가 없으므로 ir 사용. ir기법 사용할 예정-->
         <h2 class="ir">자판기 화면</h2>
         <!-- li보다 ul에 클래스를 넣어줘야 클래스를 반복하지 않게 됨 -->
-        <ul class="list-item">
-          <li>
-            <!-- data: html의 간단한 정보를 저장하기 위해 사용. JSON으로 정보를 받아서 요안에 알맞은 정보를 넣어줄 예정 -->
-            <button type="button" class="btn-item" data-item="">
-              <!-- alt를 비워넣는 이유? => 비워놓지 않으면 스크린 리더가 파일명을 읽기 떄문-->
-              <img src="src/images/coke_red.png" alt="" class="img-item" />
-              <!-- 상품제목 강조하기위해 strong사용-->
-              <strong class="tit-item">Original_Cola</strong>
-              <span class="txt-price">1000원</span>
-            </button>
-          </li>
-          <li class="sold-out">
-            <!-- data: html의 간단한 정보를 저장하기 위해 사용. JSON으로 정보를 받아서 요안에 알맞은 정보를 넣어줄 예정 -->
-            <button type="button" class="btn-item" data-item="">
-              <!-- alt를 비워넣는 이유? => 비워놓지 않으면 스크린 리더가 파일명을 읽기 떄문-->
-              <img src="src/images/coke_red.png" alt="" class="img-item" />
-              <!-- 상품제목 강조하기위해 strong사용-->
-              <strong class="tit-item">Original_Cola</strong>
-              <span class="txt-price">1000원</span>
-            </button>
-          </li>
-          <li>
-            <!-- data: html의 간단한 정보를 저장하기 위해 사용. JSON으로 정보를 받아서 요안에 알맞은 정보를 넣어줄 예정 -->
-            <button type="button" class="btn-item" data-item="">
-              <!-- alt를 비워넣는 이유? => 비워놓지 않으면 스크린 리더가 파일명을 읽기 떄문-->
-              <img src="src/images/coke_red.png" alt="" class="img-item" />
-              <!-- 상품제목 강조하기위해 strong사용-->
-              <strong class="tit-item">Original_Cola</strong>
-              <span class="txt-price">1000원</span>
-            </button>
-          </li>
-          <li>
-            <!-- data: html의 간단한 정보를 저장하기 위해 사용. JSON으로 정보를 받아서 요안에 알맞은 정보를 넣어줄 예정 -->
-            <button type="button" class="btn-item" data-item="">
-              <!-- alt를 비워넣는 이유? => 비워놓지 않으면 스크린 리더가 파일명을 읽기 떄문-->
-              <img src="src/images/coke_red.png" alt="" class="img-item" />
-              <!-- 상품제목 강조하기위해 strong사용-->
-              <strong class="tit-item">Original_Cola</strong>
-              <span class="txt-price">1000원</span>
-            </button>
-          </li>
-          <li>
-            <!-- data: html의 간단한 정보를 저장하기 위해 사용. JSON으로 정보를 받아서 요안에 알맞은 정보를 넣어줄 예정 -->
-            <button type="button" class="btn-item" data-item="">
-              <!-- alt를 비워넣는 이유? => 비워놓지 않으면 스크린 리더가 파일명을 읽기 떄문-->
-              <img src="src/images/coke_red.png" alt="" class="img-item" />
-              <!-- 상품제목 강조하기위해 strong사용-->
-              <strong class="tit-item">Original_Cola</strong>
-              <span class="txt-price">1000원</span>
-            </button>
-          </li>
-          <li>
-            <!-- data: html의 간단한 정보를 저장하기 위해 사용. JSON으로 정보를 받아서 요안에 알맞은 정보를 넣어줄 예정 -->
-            <button type="button" class="btn-item" data-item="">
-              <!-- alt를 비워넣는 이유? => 비워놓지 않으면 스크린 리더가 파일명을 읽기 떄문-->
-              <img src="src/images/coke_red.png" alt="" class="img-item" />
-              <!-- 상품제목 강조하기위해 strong사용-->
-              <strong class="tit-item">Original_Cola</strong>
-              <span class="txt-price">1000원</span>
-            </button>
-          </li>
-        </ul>
+        <ul class="list-item"></ul>
 
         <!-- 하나의 작은 섹션으로 묶음. h2단 아래의 섹션이므로 h3 사용 -->
         <section class="cont-buy">
@@ -187,6 +126,8 @@
         </div>
       </section>
     </article>
-    <script src="./src/main.js"></script>
+    <!-- 파일 프로토콜로 페이지를 열면 CORS 문제가 발생하여 item.json이 동작하지 않는다. -->
+    <!-- 반드시 로컬 서버로 실행하도록 하여야 한다. (live server를 사용하길 권고함) -->
+    <script type="module" src="./src/js/index.js"></script>
   </body>
 </html>
