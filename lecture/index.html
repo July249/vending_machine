@@ -39,7 +39,7 @@
               <span class="txt-price">1000원</span>
             </button>
           </li>
-          <li>
+          <li class="sold-out">
             <!-- data: html의 간단한 정보를 저장하기 위해 사용. JSON으로 정보를 받아서 요안에 알맞은 정보를 넣어줄 예정 -->
             <button type="button" class="btn-item" data-item="">
               <!-- alt를 비워넣는 이유? => 비워놓지 않으면 스크린 리더가 파일명을 읽기 떄문-->
@@ -92,7 +92,7 @@
         </ul>
 
         <!-- 하나의 작은 섹션으로 묶음. h2단 아래의 섹션이므로 h3 사용 -->
-        <section>
+        <section class="cont-buy">
           <!-- 클래스는 ir클래스를 써서 나중에 보이지 않게 만듦 -->
           <h3 class="ir">구입 관련 정보</h3>
           <!-- 단순 요소 표시이므로 div 사용 -->
@@ -118,7 +118,25 @@
               <button type="button" class="btn-staged" data-item="Cool Cola">
                 <img src="src/images/coke_blue.png" alt="" class="img-item" />
                 <!-- 제목 -->
-                <strong>Cool_Cola</strong>
+                <strong class="txt-item">Cool_Cola</strong>
+                <!-- 기본값 1을 집어넣음 -->
+                <span class="num-counter">1</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="btn-staged" data-item="Cool Cola">
+                <img src="src/images/coke_blue.png" alt="" class="img-item" />
+                <!-- 제목 -->
+                <strong class="txt-item">Cool_Cola</strong>
+                <!-- 기본값 1을 집어넣음 -->
+                <span class="num-counter">1</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="btn-staged" data-item="Cool Cola">
+                <img src="src/images/coke_blue.png" alt="" class="img-item" />
+                <!-- 제목 -->
+                <strong class="txt-item">Cool_Cola</strong>
                 <!-- 기본값 1을 집어넣음 -->
                 <span class="num-counter">1</span>
               </button>
@@ -146,7 +164,21 @@
             <li>
               <img src="src/images/coke_blue.png" alt="" class="img-item" />
               <!-- 제목 -->
-              <strong>Cool_Cola</strong>
+              <strong class="txt-item">Cool_Cola</strong>
+              <!-- 기본값 1을 집어넣음 -->
+              <span class="num-counter">1</span>
+            </li>
+            <li>
+              <img src="src/images/coke_blue.png" alt="" class="img-item" />
+              <!-- 제목 -->
+              <strong class="txt-item">Cool_Cola</strong>
+              <!-- 기본값 1을 집어넣음 -->
+              <span class="num-counter">1</span>
+            </li>
+            <li>
+              <img src="src/images/coke_blue.png" alt="" class="img-item" />
+              <!-- 제목 -->
+              <strong class="txt-item">Cool_Cola</strong>
               <!-- 기본값 1을 집어넣음 -->
               <span class="num-counter">1</span>
             </li>
@@ -155,6 +187,6 @@
         </div>
       </section>
     </article>
-    <script src="./script.js"></script>
+    <script src="./src/main.js"></script>
   </body>
 </html>
