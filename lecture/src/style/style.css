@@ -1,0 +1,62 @@
+/* CSS가 기본적으로 UTF-8 방식으로 렌더링되게 함 */
+@charset 'utf-8';
+
+/* 유틸리티 스타일 (유틸리티성을 위한 구분) - 유틸리티: 공통적으로 많이 사용되는 겻. IR클래스등 */
+.ir {
+  position: absolute;
+  /* clip: rect(); 옛날문법임 */
+  clip-path: inset(50%); /* 네모 그리는 속성, 상하좌우 50%씩 잘라버림 */
+  width: 1px;
+  height: 1px;
+  overflow: hidden; /* 넘어가면 hidden처리 */
+}
+
+.img-item {
+  display: block; /* display: block을 설정하는 이유 => 베이스라인때문임. 이미지는 기본적으로 인라인 요소임. 이렇게 설정해주면 내부에 빈공백이 생기지 않음 */
+}
+
+/* 전체 레이아웃 (을 위한 스타일 작성) */
+body {
+  background-color: #eae8fe;
+}
+
+#app {
+  display: flex;
+  justify-content: center; /* justify-content는 주축을 기준으로 자식들을 움직이는 속성 */
+  flex-wrap: wrap;
+  gap: 0 28px; /* 오른쪽 섹션과 왼쪽 섹션의 간격을 28px로 설정 */
+  padding-top: 247px; /* 로고와 아래 2개의 섹션을 떨어뜨리기 위한 설정 */
+  font-family: 'Noto Sans KR', sans-serif; /* 폰트 적용 */
+}
+
+#app .tit-app {
+  position: absolute; /* 상단에 고정시키기 위해 absolute로 설정 */
+  width: 386px;
+  top: 0;
+  left: 50%; /* 왼쪽끝에서 화면의 50%만큼 밈 => 요소의 크기가 로고의 왼쪽 끝을 기준으로하므로 콜라들이 로고의 왼쪽으로 가게 됨 */
+  /* margin을 사용하려면 전체 넓이를 알아야 함 */
+  transform: translateX(-50%); /* 자기자신의 너비의 반만큼 당겨줌 */
+}
+
+/* app의 자식 */
+#app .vending-machine,
+#app .my-info {
+  flex-basis: 360px; /* flex에 넓이값 줄때 기본 속성*/
+  background-color: #fff;
+}
+
+/* 이 작업을 해야 가운데로 옴 */
+#app .tit-app .img-item {
+  width: 100%;
+}
+
+/* 자판기 스타일 */
+#app .vending-machine {
+  padding: 31px 27px 28px; /* 경계와의 여백 설정 */
+}
+
+.vending-machine .list-item {
+  display: grid; /* 그리드를 사용하면 레이아웃을 짤 때 편하다 (위와 아래의 레이아웃 구현의 통일성을 위해서 사용)*/
+  grid-template-columns: 1fr 1fr 1fr; /* 컬럼이 크게 3개로 나뉨 */
+  gap: 12px; /* 컬럼간의 gap */
+}
