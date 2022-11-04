@@ -1,10 +1,10 @@
-export default class ColaGenerator {
+class ColaGenerator {
   constructor() {
     this.itemList = document.querySelector('.list-item');
   }
 
-  setup() {
-    this.loadData((json) => {
+  async setup() {
+    await this.loadData((json) => {
       this.colaFactory(json);
     });
   }
@@ -66,5 +66,5 @@ export default class ColaGenerator {
   }
 }
 
-// export default ColaGenerator; // 클래스 하나만 내보내는 경우
+export default ColaGenerator; // 클래스 하나만 내보내는 경우
 // export { ... } ColaGenerator; // 내보내는 클래스가 여러 개인 경우
