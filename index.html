@@ -1,250 +1,95 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vending Machine</title>
-    <link rel="stylesheet" href="./css/style.css" />
-  </head>
-  <body>
-    <!-- header -->
-    <header id="header">
-      <h1 class="app_title txt-hide">콜라콜라</h1>
-      <p class="welcome_Msg txt-hide">
-        콜라콜라 매장을 방문해주셔서 감사합니다!
-      </p>
-      <div class="logo">
-        <img class="img_logo" src="./img/Logo.png" alt="" />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vending Machine</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+  <article id="app">
+    <h1 class="tit-app">
+      <img src="./img/Logo.png" alt="ColaCola" class="img-item" />
+    </h1>
+    <section class="vending-machine">
+      <h2 class="ir">자판기 화면</h2>
+      <ul class="list-item"></ul>
+
+      <section class="cont-buy">
+        <h3 class="ir">구입 관련 정보</h3>
+        <div class="info-balance">
+          잔액:
+          <span class="txt-balance">원</span>
+        </div>
+        <button type="button" class="btn-return">거스름돈 반환</button>
+        <label for="inpPut" class="ir">입금할 금액을 입력합니다.</label>
+        <input type="number" id="inpPut" class="inp-put" placeholder="입금액 입력" />
+        <button type="button" class="btn-put">입금</button>
+
+        <ul class="list-item-staged">
+          <!--           <li>
+            <button type="button" class="btn-staged" data-item="Cool Cola">
+              <img src="src/images/coke_blue.png" alt="" class="img-item" />
+              <strong class="txt-item">Cool_Cola</strong>
+              <span class="num-counter">1</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="btn-staged" data-item="Cool Cola">
+              <img src="src/images/coke_blue.png" alt="" class="img-item" />
+              <strong class="txt-item">Cool_Cola</strong>
+              <span class="num-counter">1</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="btn-staged" data-item="Cool Cola">
+              <img src="src/images/coke_blue.png" alt="" class="img-item" />
+              <strong class="txt-item">Cool_Cola</strong>
+              <span class="num-counter">1</span>
+            </button>
+          </li> -->
+        </ul>
+        <button type="button" class="btn-get">획득</button>
+      </section>
+    </section>
+
+    <section class="my-info">
+      <h2 class="ir">나의 정보</h2>
+      <div class="cont-mymoney">
+        <div class="info-mymoney">
+          소지금:
+          <span class="txt-mymoney">30,000원</span>
+        </div>
       </div>
-    </header>
-    <!-- app -->
-    <main id="container">
-      <!-- purchase page -->
-      <section id="purchase">
-        <h2 class="txt-hide">구매페이지</h2>
-        <div class="item_menu">
-          <div id="product1" class="btn-item selected">
-            <div class="sold_out_background off">
-              <img class="img-sold_out" src="./img/sold_out.png" alt="품절" />
-            </div>
-            <figure class="item_image_fig">
-              <img
-                class="img_item"
-                src="./img/coke_red.png"
-                alt="오리지널 콜라"
-              />
-              <figcaption class="img_item_desc">Original_Cola</figcaption>
-            </figure>
-            <p id="item_price1" class="item_price">1000원</p>
-          </div>
-          <div id="product2" class="btn-item sold_out">
-            <div class="sold_out_background on">
-              <img class="img-sold_out" src="./img/sold_out.png" alt="품절" />
-            </div>
-            <figure class="item_image_fig">
-              <img
-                class="img_item"
-                src="./img/coke_purple.png"
-                alt="보라색 콜라"
-              />
-              <figcaption class="img_item_desc">Violet_Cola</figcaption>
-            </figure>
-            <p id="item_price2" class="item_price">1000원</p>
-          </div>
-          <div id="product3" class="btn-item">
-            <div class="sold_out_background off">
-              <img class="img-sold_out" src="./img/sold_out.png" alt="품절" />
-            </div>
-            <figure class="item_image_fig">
-              <img
-                class="img_item"
-                src="./img/coke_yellow.png"
-                alt="노란색 콜라"
-              />
-              <figcaption class="img_item_desc">Yellow_Cola</figcaption>
-            </figure>
-            <p id="item_price3" class="item_price">1000원</p>
-          </div>
-          <div id="product4" class="btn-item">
-            <div class="sold_out_background off">
-              <img class="img-sold_out" src="./img/sold_out.png" alt="품절" />
-            </div>
-            <figure class="item_image_fig">
-              <img class="img_item" src="./img/coke_blue.png" alt="쿨 콜라" />
-              <figcaption class="img_item_desc">Cool_Cola</figcaption>
-            </figure>
-            <p id="item_price4" class="item_price">1000원</p>
-          </div>
-          <div id="product5" class="btn-item selected">
-            <div class="sold_out_background off">
-              <img class="img-sold_out" src="./img/sold_out.png" alt="품절" />
-            </div>
-            <figure class="item_image_fig">
-              <img
-                class="img_item"
-                src="./img/coke_green.png"
-                alt="녹색 콜라"
-              />
-              <figcaption class="img_item_desc">Green_Cola</figcaption>
-            </figure>
-            <p id="item_price5" class="item_price">1000원</p>
-          </div>
-          <div id="product6" class="btn-item">
-            <div class="sold_out_background off">
-              <img class="img-sold_out" src="./img/sold_out.png" alt="품절" />
-            </div>
-            <figure class="item_image_fig">
-              <img
-                class="img_item"
-                src="./img/coke_orange.png"
-                alt="오렌지색 콜라"
-              />
-              <figcaption class="img_item_desc">Orange_Cola</figcaption>
-            </figure>
-            <p id="item_price6" class="item_price">1000원</p>
-          </div>
-        </div>
-        <div class="counter">
-          <div class="counter_function">
-            <p class="show-change">
-              잔액 : <span id="change-amount" class="money">1,000 원</span>
-            </p>
-          </div>
-          <div class="counter_function">
-            <button type="button" class="btn-change">거스름돈 반환</button>
-          </div>
-          <div class="counter_function">
-            <input
-              type="text"
-              id="deposit"
-              class="input-deposit"
-              placeholder="입금액 입력"
-              required
-            />
-          </div>
-          <div class="counter_function">
-            <button type="submit" class="btn-send">입금</button>
-          </div>
-          <div class="counter_function item_basket">
-            <!-- 취소 버튼이 없다! -->
-            <!-- 취소 기능을 추가하기 위한 요소를 추가했으면 좋겠다 -->
-            <ul class="item_lists">
-              <li class="item">
-                <figure class="item_image_fig">
-                  <img
-                    class="img_item"
-                    src="./img/coke_red.png"
-                    alt="오리지널 콜라"
-                  />
-                  <figcaption class="img_item_desc">Original_Cola</figcaption>
-                </figure>
-                <div class="item_number">1</div>
-              </li>
-              <li class="item">
-                <figure class="item_image_fig">
-                  <img
-                    class="img_item"
-                    src="./img/coke_green.png"
-                    alt="녹색 콜라"
-                  />
-                  <figcaption class="img_item_desc">Green_Cola</figcaption>
-                </figure>
-                <div class="item_number">2</div>
-              </li>
-              <li class="item">
-                <figure class="item_image_fig">
-                  <img
-                    class="img_item"
-                    src="./img/coke_blue.png"
-                    alt="쿨 콜라"
-                  />
-                  <figcaption class="img_item_desc">Cool_Cola</figcaption>
-                </figure>
-                <div class="item_number">3</div>
-              </li>
-              <li class="item">
-                <figure class="item_image_fig">
-                  <img
-                    class="img_item"
-                    src="./img/coke_orange.png"
-                    alt="오렌지 콜라"
-                  />
-                  <figcaption class="img_item_desc">Orange_Cola</figcaption>
-                </figure>
-                <div class="item_number">4</div>
-              </li>
-            </ul>
-          </div>
-          <div class="counter_function">
-            <!-- 획득 눌렀을 때 alert를 발생시킨다 -->
-            <!-- 사용자의 구매 의사를 한번 더 묻는다 -->
-            <button type="submit" class="btn-purchase">획득</button>
-          </div>
-        </div>
-      </section>
-      <section id="purchase_history">
-        <h2 class="history_title txt-hide">구매내역 및 소지한 금액 확인</h2>
-        <div class="my_pocket">
-          <p>소지금 :<span id="input_cash" class="money">25,000 원</span></p>
-        </div>
-        <div class="purchase_list">
-          <h3 class="purchase_list_title">획득한 음료</h3>
-          <div class="item_box item_basket">
-            <ul class="item_lists">
-              <li class="item">
-                <figure class="item_image_fig">
-                  <img
-                    class="img_item"
-                    src="./img/coke_red.png"
-                    alt="오리지널 콜라"
-                  />
-                  <figcaption class="img_item_desc">Original_Cola</figcaption>
-                </figure>
-                <div class="item_number">1</div>
-              </li>
-              <li class="item">
-                <figure class="item_image_fig">
-                  <img
-                    class="img_item"
-                    src="./img/coke_green.png"
-                    alt="녹색 콜라"
-                  />
-                  <figcaption class="img_item_desc">Green_Cola</figcaption>
-                </figure>
-                <div class="item_number">2</div>
-              </li>
-              <li class="item">
-                <figure class="item_image_fig">
-                  <img
-                    class="img_item"
-                    src="./img/coke_blue.png"
-                    alt="쿨 콜라"
-                  />
-                  <figcaption class="img_item_desc">Cool_Cola</figcaption>
-                </figure>
-                <div class="item_number">3</div>
-              </li>
-              <li class="item">
-                <figure class="item_image_fig">
-                  <img
-                    class="img_item"
-                    src="./img/coke_orange.png"
-                    alt="오렌지 콜라"
-                  />
-                  <figcaption class="img_item_desc">Orange_Cola</figcaption>
-                </figure>
-                <div class="item_number">4</div>
-              </li>
-            </ul>
-          </div>
-          <p class="expense_result">
-            <span class="txt-hide">총금액 :</span>
-            <span id="total_cost" class="money">9,000 원</span>
-          </p>
-        </div>
-      </section>
-    </main>
-    <script src="main.js"></script>
-  </body>
+
+      <div class="cont-myitems">
+        <strong class="tit-myitem">획득한 음료</strong>
+        <ul class="list-item-staged">
+          <!--             <li>
+              <img src="src/images/coke_blue.png" alt="" class="img-item" />
+              <strong class="txt-item">Cool_Cola</strong>
+              <span class="num-counter">1</span>
+            </li>
+            <li>
+              <img src="src/images/coke_blue.png" alt="" class="img-item" />
+              <strong class="txt-item">Cool_Cola</strong>
+              <span class="num-counter">1</span>
+            </li>
+            <li>
+              <img src="src/images/coke_blue.png" alt="" class="img-item" />
+              <strong class="txt-item">Cool_Cola</strong>
+              <span class="num-counter">1</span>
+            </li> -->
+        </ul>
+        <strong class="txt-total">총금액: 0원</strong>
+      </div>
+    </section>
+  </article>
+  <script type="module" src="./js/main.js"></script>
+</body>
+
 </html>

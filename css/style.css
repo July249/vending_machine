@@ -1,438 +1,307 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700&display=swap');
+/* CSS가 기본적으로 UTF-8 방식으로 렌더링되게 함 */
+@charset 'utf-8';
 
-:root {
-  /* font-family */
-  --noto-sans: 'Noto Sans KR', sans-serif;
-}
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700&display=swap");
 
-/* Resets */
-html,
-body,
-h1,
-h2,
-h3,
-p {
-  margin: 0;
-  padding: 0;
-}
-
-h1,
-h2,
-h3,
-p {
-  font-size: inherit;
-  font-weight: inherit;
-}
-
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-figure {
-  margin: 0;
-}
-
-button {
-  margin: 0;
-  padding: 0;
-  border: none;
-  background: none;
-}
-
-.txt-hide {
+/* 유틸리티 스타일 (유틸리티성을 위한 구분) - 유틸리티: 공통적으로 많이 사용되는 겻. IR클래스등 */
+.ir {
   position: absolute;
+  /* clip: rect(); 옛날문법임 */
+  clip-path: inset(50%); /* 네모 그리는 속성, 상하좌우 50%씩 잘라버림 */
   width: 1px;
   height: 1px;
-  margin: -1px;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  overflow: hidden;
+  overflow: hidden; /* 넘어가면 hidden처리 */
 }
 
-/* global setting */
-* {
-  box-sizing: border-box;
+.img-item {
+  display: block; /* display: block을 설정하는 이유 => 베이스라인때문임. 이미지는 기본적으로 인라인 요소임. 이렇게 설정해주면 내부에 빈공백이 생기지 않음 */
 }
 
+/* 전체 레이아웃 (을 위한 스타일 작성) */
 body {
-  background: #fff;
+  background-color: #eae8fe;
 }
 
-/* header */
-#header .logo {
-  width: 166px;
-  margin: 0 auto;
+#app {
+  display: flex;
+  justify-content: center; /* justify-content는 주축을 기준으로 자식들을 움직이는 속성 */
+  flex-wrap: wrap;
+  gap: 0 28px; /* 오른쪽 섹션과 왼쪽 섹션의 간격을 28px로 설정 */
+  padding-top: 247px; /* 로고와 아래 2개의 섹션을 떨어뜨리기 위한 설정 */
+  font-family: "Noto Sans KR", sans-serif; /* 폰트 적용 */
+  font-weight: 500;
 }
 
-#header .img_logo {
+#app .tit-app {
+  position: absolute; /* 상단에 고정시키기 위해 absolute로 설정 */
+  width: 386px;
+  top: 0;
+  left: 50%; /* 왼쪽끝에서 화면의 50%만큼 밈 => 요소의 크기가 로고의 왼쪽 끝을 기준으로하므로 콜라들이 로고의 왼쪽으로 가게 됨 */
+  /* margin을 사용하려면 전체 넓이를 알아야 함 */
+  transform: translateX(-50%); /* 자기자신의 너비의 반만큼 당겨줌 */
+}
+
+/* app의 자식 */
+#app .vending-machine,
+#app .my-info {
+  flex-basis: 360px; /* flex에 넓이값 줄때 기본 속성*/
+}
+
+/* 이 작업을 해야 가운데로 옴 */
+#app .tit-app .img-item {
   width: 100%;
-  height: 100%;
 }
 
-/* container */
-#container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Purchase Page */
-#purchase,
-#purchase_history {
-  width: 360px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.item_menu {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  width: 306px;
-  height: 284px;
-  margin: 18px 27px 6px;
-}
-
-.item_menu .btn-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-  width: 94px;
-  height: 130px;
-  border-radius: 10px;
-  overflow: hidden;
+/* 자판기 스타일 */
+#app .vending-machine {
+  padding: 31px 27px 28px; /* 경계와의 여백 설정 */
   background-color: #fff;
-  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.5));
-  cursor: pointer;
 }
 
-.item_menu .btn-item:hover {
-  box-sizing: content-box;
-  border: 3px solid #6327fe;
-  margin: -3px;
+.vending-machine .list-item {
+  display: grid; /* 그리드를 사용하면 레이아웃을 짤 때 편하다 (위와 아래의 레이아웃 구현의 통일성을 위해서 사용)*/
+  grid-template-columns: 1fr 1fr 1fr; /* 컬럼이 크게 3개로 나뉨 */
+  gap: 12px; /* 컬럼간의 gap */
 }
 
-.item_menu .btn-item.selected {
-  box-sizing: content-box;
-  border: 3px solid #6327fe;
-  margin: -3px;
+/*  */
+.vending-machine .list-item li {
+  position: relative; /* 품절 위치를 잡기 위해서 relative 할당 */
+  border-radius: 10px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
 
-.sold_out_background.off {
-  display: none;
-}
-
-.sold_out_background.on {
-  display: block;
+/* 품절 UI 구현 */
+.vending-machine .list-item li.sold-out::before {
+  display: block; /* 베이스라인 제거를 위함 */
   position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+  content: " ";
+  /* 전체적으로 li를 꽉 채우도록 함 */
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  /* li 상단에 나타나도록 설정 */
+  z-index: 1;
+  border-radius: 10px;
+  background: no-repeat center/60px 46px url("../images/sold_out.png") rgba(0, 0, 0, 0.8);
 }
 
-.img-sold_out {
-  display: inline;
-  margin-top: 20px;
-  width: 57.5px;
-  height: 44.8px;
+.vending-machine .list-item li.sold-out {
+  pointer-events: none;
 }
 
-.btn-item .item_image_fig {
-  margin: 11px auto 7px;
+.vending-machine .btn-item {
+  width: 100%;
+  padding: 11px 12px 9px;
+}
+
+.vending-machine .btn-item:active {
+  border-radius: 10px;
+  outline: 3px solid #6327fe;
+}
+
+.vending-machine .list-item .img-item {
   width: 36px;
-  height: 81px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.btn-item .item_image_fig .img_item {
-  display: block;
-  width: inherit;
   height: 65px;
   margin: 0 auto;
 }
 
-.btn-item .item_image_fig .img_item_desc {
-  font-family: var(--noto-sans);
-  font-size: 9px;
-  font-weight: 500;
-  line-height: 10px;
-  text-align: center;
+.vending-machine .tit-item {
+  display: block; /* 인라인 요소는 좌우 마진만 가능하다. */
   margin-top: 6px;
+  margin-bottom: 7px;
+  font-size: 9px;
 }
 
-.item_price {
-  color: #fff;
-  font-family: var(--noto-sans);
+.vending-machine .txt-price {
+  display: block;
+  padding: 5px 15px;
   font-size: 12px;
-  font-weight: 500;
-  line-height: 1;
-  width: 70px;
-  margin: 0 auto 9px;
-  padding: 5px 16px 5px 15px;
-  background: #6327fe;
+  background-color: #6327fe;
   border-radius: 50px;
+  color: #fff;
 }
 
-.counter {
+/* 잔액, 입금, 획득 스타일 */
+.vending-machine .cont-buy {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr 1fr; /* grid-template-columns: 2fr 1fr 과는 다르다! */
   gap: 12px;
-  margin: 14px 27px;
-  width: 306px;
+  margin-top: 20px;
 }
 
-.counter_function {
+.cont-buy .info-balance,
+.cont-buy .inp-put,
+.cont-buy .list-item-staged {
+  grid-column: 1 / 3;
   border-radius: 5px;
-  overflow: hidden;
 }
 
-.counter_function:nth-child(1) {
-  grid-area: 1 / 1 / span 1 / span 2;
-  width: 200px;
-  height: 33px;
-  background: #eae8fe;
+.cont-buy .btn-return,
+.cont-buy .btn-put,
+.cont-buy .btn-get {
+  /* 공통되는  속성들을 적용한다. */
+  border-radius: 5px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  font-size: 13px;
 }
 
-.counter_function:nth-child(3) {
-  grid-area: 2 / 1 / span 1 / span 2;
-  width: 200px;
-  height: 33px;
+.cont-buy .btn-get {
+  color: #fff;
+  background-color: #6327fe;
+}
+
+.cont-buy .info-balance {
+  padding: 6px 10px;
+  background-color: #eae8fe;
+}
+
+.cont-buy .info-balance .txt-balance {
+  float: right;
+}
+
+.cont-buy .inp-put {
+  padding: 6px;
   border: 1px solid #bdbdbd;
 }
 
-.counter_function:nth-child(5) {
-  grid-area: 3 / 1 / span 1 / span 2;
-  width: 200px;
+.cont-buy .list-item-staged {
   height: 106px;
 }
 
-.counter_function:nth-child(even) {
-  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.5));
-}
-
-.show-change {
-  margin: 6px 10px 7px;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-}
-
-.input-deposit {
-  width: 100%;
-  height: 100%;
-  border: none;
-  padding: 7px 10px;
-}
-
-.input-deposit::placeholder {
-  font-family: var(--noto-sans);
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 19px;
-  text-align: end;
-}
-
-button {
-  font-family: var(--noto-sans);
-  font-size: 13px;
-  line-height: 19px;
-  width: 94px;
-  cursor: pointer;
-}
-
-.btn-change,
-.btn-send {
-  font-weight: 500;
-  padding: 6px 9px 8px 9px;
-  background: #fff;
-}
-
-.btn-purchase {
-  color: #fff;
-  font-weight: 700;
-  padding: 43px 35px 44px;
-  background: #6327fe;
-}
-
-.item_basket {
-  position: relative;
-  padding: 3px 8px 12px 18px;
-  background: #eae8fe;
+/* 획득한 음료와 동일한 스타일을 가져가야하기에 .cont-buy를 더이상 사용하지 않습니다. */
+.list-item-staged {
   overflow-y: scroll;
-  border-top: 9px solid transparent;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+  background-color: #eae8fe;
+  padding: 8px 8px 8px 12px;
+  /* 스크롤바 스타일을 위한 추가 설정 */
+  border-top: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-bottom: 8px solid transparent;
+  border-bottom: 4px solid transparent;
 }
 
-.item_basket::-webkit-scrollbar {
+.list-item-staged li {
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.list-item-staged li + li {
+  margin-top: 6px;
+}
+
+.list-item-staged .img-item,
+.list-item-staged .txt-item {
+  float: left;
+}
+
+.list-item-staged .btn-staged {
+  width: 100%;
+  padding: 8px; /* 사용자 편의성을 생각하여 버튼을 최대한 크게 만들기 위해 패딩을 버튼에 추가함 */
+}
+
+.list-item-staged .txt-item {
+  margin-left: 10px;
+  line-height: 32px;
+  font-size: 9px;
+}
+
+.list-item-staged .num-counter {
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+}
+
+.list-item-staged .img-item {
+  width: 18px;
+  height: 32px; /* 짝수로 정하는 것이 좋다. */
+}
+
+/* 스크롤바 스타일 */
+.list-item-staged::-webkit-scrollbar {
   width: 4px;
 }
 
-.item_basket::-webkit-scrollbar-button {
+.list-item-staged::-webkit-scrollbar-button {
   width: 0;
   height: 0;
 }
 
-.item_basket::-webkit-scrollbar-thumb {
+.list-item-staged::-webkit-scrollbar-thumb {
   border-radius: 50px;
   background: #fff;
 }
 
-.item_basket::-webkit-scrollber-track {
+.list-item-staged::-webkit-scrollber-track {
   background: transparent;
 }
 
-.item {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  background: #fff;
-  margin-bottom: 6px;
-  border: 1px solid #bdbdbd;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.item .item_image_fig {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 94px;
-  height: 33px;
-  margin: auto 10px;
-}
-
-.item .img_item {
-  width: 18px;
-  height: inherit;
-  margin-right: 10px;
-}
-
-.item .img_item_desc {
-  font-family: var(--noto-sans);
-  font-weight: 500;
-  font-size: 9px;
-  line-height: 10px;
-}
-
-.item_number {
-  width: 30px;
-  height: 30px;
-  margin: 8px 8px 8px 0;
-  border: 1px solid #bdbdbd;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: var(--noto-sans);
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-}
-
-/* Purchase History Page */
-.my_pocket {
-  height: 50px;
+/* 나의 정보 스타일 */
+.my-info .cont-mymoney {
   padding: 9px 27px;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
   background-color: #fff;
 }
 
-.my_pocket p {
-  width: 306px;
-  background-color: #eae8fe;
+.my-info .info-mymoney {
   padding: 6px 10px;
+  background-color: #eae8fe;
+  border-radius: 5px;
+  line-height: 20px;
 }
 
-.money {
+.info-mymoney .txt-mymoney {
   float: right;
+  font-weight: 700;
 }
 
-.money::before {
-  content: ' ';
-  display: inline-block;
-  width: 6px;
-}
-
-.purchase_list {
-  width: 360px;
+.my-info .cont-myitems {
+  padding: 25px 27px 26px;
   background-color: #fff;
 }
 
-.purchase_list_title {
-  margin: 32px auto 13px;
+.cont-myitems .tit-myitem {
+  display: block;
   text-align: center;
-  font-family: var(--noto-sans);
   font-weight: 700;
-  font-size: 14px;
+  margin-bottom: 13px;
   line-height: 20px;
 }
 
-.item_box {
-  width: 306px;
-  height: 364px;
-  margin: 0 auto;
+.my-info .list-item-staged {
+  height: 368px;
 }
 
-.expense_result {
-  width: 306px;
-  margin: 6px auto 0;
-  text-align: end;
-  font-family: var(--noto-sans);
-  font-weight: 500;
+.my-info .list-item-staged li {
+  overflow: hidden;
+  padding: 8px;
+}
+
+.my-info .txt-total {
+  display: block;
+  text-align: right;
+  margin-top: 6px;
   font-size: 12px;
-  line-height: 20px;
+  line-height: 17px;
 }
 
-.expense_result::before {
-  content: '총금액 : ';
-}
-
-@media screen and (min-width: 768px) {
+@media only screen and (min-width: 320px) and (max-width: 480px) and (-webkit-min-device-pixel-ratio: 1) {
   body {
-    background: #eae8fe;
+    background-color: #fff;
   }
 
-  #header {
-    margin-bottom: 68px;
+  #app {
+    padding-top: 96px;
   }
 
-  #header .logo {
-    width: 386px;
-    margin: 0 auto;
-  }
-
-  #container {
-    flex-direction: row;
-    justify-content: center;
-  }
-
-  #purchase {
-    margin-right: 28px;
-    background: #fff;
-  }
-
-  .counter {
-    padding-bottom: 8px;
-  }
-
-  .item_menu {
-    margin-top: 31px;
-  }
-
-  .my_pocket {
-    margin-bottom: 13px;
-  }
-
-  .expense_result {
-    margin-bottom: 34px;
+  #app .tit-app {
+    width: 166px;
   }
 }
