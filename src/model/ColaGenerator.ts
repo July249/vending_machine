@@ -1,6 +1,8 @@
-class ColaGenerator {
+interface Generator {}
+
+class ColaGenerator implements Generator {
   constructor() {
-    this.itemList = document.querySelector(".list-item");
+    this.itemList = document.querySelector('.list-item');
   }
 
   async setup() {
@@ -10,7 +12,7 @@ class ColaGenerator {
   }
 
   async loadData(callback) {
-    const res = await fetch("../data/item.json");
+    const res = await fetch('../data/item.json');
 
     if (res.status === 200) {
       callback(await res.json());
@@ -19,11 +21,11 @@ class ColaGenerator {
     }
   }
 
-  colaFactory(data /* JSON data */) {
+  colaFactory(data) {
     const docFrag = document.createDocumentFragment();
 
     data.forEach((el) => {
-      const item = document.createElement("li");
+      const item = document.createElement('li');
       const itemTemplate = `
       <button type="button" class="btn-item" data-item="${el.name}" data-count="${el.count}" data-price="${el.cost}" data-img="${el.img}">
         <img src="../img/${el.img}" alt="" class="img-item" />
