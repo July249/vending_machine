@@ -8,18 +8,19 @@
   <title>Vending Machine</title>
   <link rel="stylesheet" href="./src/css/reset.css">
   <link rel="stylesheet" href="./src/css/style.css" />
-  <script type="module" src="./src/main.ts" defer></script>
+  <script type="module" src="./src/main.js" defer></script>
 </head>
 
 <body>
   <article id="app">
     <h1 class="tit-app">
-      <img src=".src/assets/img/Logo.png" alt="ColaCola" class="img-item" />
+      <img src="./src/assets/img/Logo.png" alt="ColaCola" class="img-item" />
     </h1>
+    <!-- VendingMachine -->
     <section class="vending-machine">
       <h2 class="ir">자판기 화면</h2>
+      <!-- ColaGenerator -->
       <ul class="list-item"></ul>
-
       <section class="cont-buy">
         <h3 class="ir">구입 관련 정보</h3>
         <div class="info-balance">
@@ -30,7 +31,6 @@
         <label for="inpPut" class="ir">입금할 금액을 입력합니다.</label>
         <input type="number" id="inpPut" class="inp-put" placeholder="입금액 입력" />
         <button type="button" class="btn-put">입금</button>
-
         <ul class="list-item-staged">
           <!--           <li>
             <button type="button" class="btn-staged" data-item="Cool Cola">
