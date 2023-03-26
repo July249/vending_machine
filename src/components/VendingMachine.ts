@@ -100,11 +100,13 @@ export default class VendingMachine {
       }
     });
 
-    const btnsCola = this.itemList.querySelectorAll('button');
+    const btnsCola = this.itemList.querySelectorAll(
+      'button'
+    )! as NodeListOf<HTMLButtonElement>;
 
-    btnsCola.forEach((item: HTMLElement) => {
+    btnsCola.forEach((item: HTMLButtonElement) => {
       item.addEventListener('click', (e: MouseEvent) => {
-        const targetEl = e.currentTarget as HTMLElement;
+        const targetEl = e.currentTarget as HTMLButtonElement;
         const balanceVal = parseInt(
           this.balance.textContent!.replaceAll(',', '')
         );
@@ -122,10 +124,10 @@ export default class VendingMachine {
 
           for (const item of stagedListItem) {
             if (item.dataset.item === targetEl.dataset.item) {
-              let numCounter = item.querySelector(
+              let quantityItem = item.querySelector(
                 '.num-counter'
               )! as HTMLElement;
-              numCounter.textContent = String(
+              quantityItem.textContent = String(
                 parseInt(item.querySelector('.num-counter')!.textContent!) + 1
               );
               isStaged = true;
@@ -139,11 +141,12 @@ export default class VendingMachine {
 
           if (targetEl.dataset.count) {
             targetCount -= 1;
-            targetEl.dataset.count = String(targetCount);
+            targetEl.dataset.count = `${targetCount}`;
           }
 
           if (parseInt(targetEl.dataset.count!) === 0) {
             targetEl.parentElement?.classList.add('sold-out');
+
             const warning = document.createElement('em')! as HTMLElement;
             warning.textContent = '해당 상품은 품절입니다.';
             warning.classList.add('ir');
@@ -163,12 +166,12 @@ export default class VendingMachine {
         for (const itemGot of this.gotList.querySelectorAll('li')) {
           let itemGotCount = itemGot.querySelector(
             '.num-counter'
-          )! as HTMLElement;
+          )! as HTMLSpanElement;
           if (itemStaged.dataset.item === itemGot.dataset.item) {
-            itemGotCount.textContent = String(
+            itemGotCount.textContent = `${
               parseInt(itemGotCount.textContent!) +
-                parseInt(itemStaged.querySelector('.num-counter')!.textContent!)
-            );
+              parseInt(itemStaged.querySelector('.num-counter')!.textContent!)
+            }`;
             isGot = true;
             break;
           }
