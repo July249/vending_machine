@@ -29,15 +29,15 @@ export default class ColaGenerator {
         `;
             item.innerHTML = itemTemplate;
             const buttonItem = item.querySelector('.btn-item');
-            const imgItem = item.querySelector('.img-item');
-            const titleItem = item.querySelector('.tit-item');
-            const productCost = item.querySelector('.txt-price');
             buttonItem.dataset.item = el.name;
             buttonItem.dataset.count = `${el.count}`;
             buttonItem.dataset.price = `${el.cost}`;
             buttonItem.dataset.img = el.img;
+            const imgItem = item.querySelector('.img-item');
             imgItem.src = `./src/assets/img/${el.img}`;
+            const titleItem = item.querySelector('.tit-item');
             titleItem.textContent = el.name;
+            const productCost = item.querySelector('.txt-price');
             productCost.textContent = `${el.cost}원`;
             docFrag.appendChild(item);
             this.itemList.appendChild(docFrag);
