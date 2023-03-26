@@ -1,3 +1,10 @@
+type Data = {
+  name: string;
+  cost: number;
+  img: string;
+  count: number;
+};
+
 export default class ColaGenerator {
   itemList: HTMLElement;
 
@@ -22,24 +29,40 @@ export default class ColaGenerator {
     }
   }
 
-  colaFactory(data: any /* JSON data */): void {
+  colaFactory(data: Data[] /* JSON data */): void {
     const docFrag = document.createDocumentFragment();
 
-    data.forEach(
-      (el: { name: string; count: number; cost: number; img: any }) => {
-        const item = document.createElement('li');
-        const itemTemplate = `
-        <button type="button" class="btn-item" data-item="${el.name}" data-count="${el.count}" data-price="${el.cost}" data-img="${el.img}">
-          <img src="./src/assets/img/${el.img}" alt="" class="img-item" />
-          <strong class="tit-item">${el.name}</strong>
-          <span class="txt-price">${el.cost}원</span>
-        </button>
-      `;
-        item.innerHTML = itemTemplate;
-        docFrag.appendChild(item);
-      }
-    );
+    data.forEach((el: Data) => {
+      const item = document.createElement('li');
 
-    this.itemList.appendChild(docFrag);
+      const itemTemplate = `
+          <button type="button" class="btn-item">
+            <img src="" alt="" class="img-item" />
+            <strong class="tit-item"></strong>
+            <span class="txt-price"></span>
+          </button>
+        `;
+
+      item.innerHTML = itemTemplate;
+
+      const buttonItem = item.querySelector('.btn-item')! as HTMLButtonElement;
+      const imgItem = item.querySelector('.img-item')! as HTMLImageElement;
+      const titleItem = item.querySelector('.tit-item')! as HTMLElement;
+      const productCost = item.querySelector('.txt-price')! as HTMLSpanElement;
+
+      buttonItem.dataset.item = el.name;
+      buttonItem.dataset.count = `${el.count}`;
+      buttonItem.dataset.price = `${el.cost}`;
+      buttonItem.dataset.img = el.img;
+
+      imgItem.src = `./src/assets/img/${el.img}`;
+
+      titleItem.textContent = el.name;
+
+      productCost.textContent = `${el.cost}원`;
+
+      docFrag.appendChild(item);
+      this.itemList.appendChild(docFrag);
+    });
   }
 }
