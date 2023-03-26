@@ -235,8 +235,12 @@ body {
 }
 
 /* 나의 정보 스타일 */
+#app .my-info {
+  padding: 31px 27px 28px;
+  background-color: #fff;
+}
+
 .my-info .cont-mymoney {
-  padding: 9px 27px;
   margin-bottom: 20px;
   background-color: #fff;
 }
@@ -254,7 +258,6 @@ body {
 }
 
 .my-info .cont-myitems {
-  padding: 25px 27px 26px;
   background-color: #fff;
 }
 
