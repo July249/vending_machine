@@ -1,20 +1,17 @@
 # Vending Machine with TypeScript
 
-## 📎 배포 URL: [https://july249.github.io/vending_machine/](https://july249.github.io/vending_machine/)
+## 📎 배포 URL:
+- [https://july249.github.io/vending_machine/](https://july249.github.io/vending_machine/)
 
 <br />
 
 ## 프로젝트 소개
-
----
 
 - 🥫 소지금의 일부를 자판기에 넣어 시원한 콜라를 뽑아 먹을 수 있는 자판기입니다.
 
 <br />
 
 ## 📆 개발 일정
-
----
 
 2️⃣ 2023.03.18 ~ 2023.03.26 : 타입스크립트로 마이그레이션 Version 1.1
 1️⃣ 2022.09.23 ~ 2022.11.04 : 자바스크립트를 이용한 Version 1.0
@@ -23,8 +20,6 @@
 
 ## 프로젝트 실행 방법
 
----
-
 ```
 $ npm install
 ```
@@ -32,8 +27,6 @@ $ npm install
 <br />
 
 ## 개발 환경
-
----
 
 ### 기술
 
@@ -46,8 +39,6 @@ $ npm install
 <br />
 
 ## 폴더 구조
-
----
 
   <details><summary>폴더 구조 보기</summary>
 
@@ -98,8 +89,6 @@ $ npm install
 <br />
 
 ## ⚙️ 구현 기능
-
----
 
 <div align="center">
 
