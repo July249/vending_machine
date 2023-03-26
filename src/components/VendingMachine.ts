@@ -38,11 +38,23 @@ export default class VendingMachine {
     stagedItem.dataset.price = target.dataset.price!;
     stagedItem.innerHTML = `
       <button type="button" class="btn-staged">
-        <img src="./src/assets/img/${target.dataset.img}" alt="" class="img-item">
-        <strong class="txt-item">${target.dataset.item}</strong>
+        <img src="" alt="" class="img-item">
+        <strong class="txt-item"></strong>
         <span class="num-counter">1</span>
       </button>
     `;
+
+    const imgItem = stagedItem.querySelector('.img-item')! as HTMLImageElement;
+    imgItem.src = `./src/assets/img/${target.dataset.img}`;
+
+    const titleItem = stagedItem.querySelector('.txt-item')! as HTMLElement;
+    titleItem.textContent = `${target.dataset.item}`;
+
+    const quantityItem = stagedItem.querySelector(
+      '.num-counter'
+    )! as HTMLSpanElement;
+    quantityItem.textContent = '1';
+
     this.stagedList.appendChild(stagedItem);
   }
 
