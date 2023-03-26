@@ -76,7 +76,7 @@ body {
   bottom: 0;
   z-index: 1;
   border-radius: 10px;
-  background: no-repeat center/60px 46px url('../images/sold_out.png')
+  background: no-repeat center/60px 46px url('../assets/img/sold_out.png')
     rgba(0, 0, 0, 0.8);
 }
 
