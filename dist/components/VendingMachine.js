@@ -22,11 +22,17 @@ export default class VendingMachine {
         stagedItem.dataset.price = target.dataset.price;
         stagedItem.innerHTML = `
       <button type="button" class="btn-staged">
-        <img src="./src/assets/img/${target.dataset.img}" alt="" class="img-item">
-        <strong class="txt-item">${target.dataset.item}</strong>
+        <img src="" alt="" class="img-item">
+        <strong class="txt-item"></strong>
         <span class="num-counter">1</span>
       </button>
     `;
+        const imgItem = stagedItem.querySelector('.img-item');
+        imgItem.src = `./src/assets/img/${target.dataset.img}`;
+        const titleItem = stagedItem.querySelector('.txt-item');
+        titleItem.textContent = `${target.dataset.item}`;
+        const quantityItem = stagedItem.querySelector('.num-counter');
+        quantityItem.textContent = '1';
         this.stagedList.appendChild(stagedItem);
     }
     bindEvents() {
@@ -74,8 +80,8 @@ export default class VendingMachine {
                         new Intl.NumberFormat().format(balanceVal - targetElPrice) + '원';
                     for (const item of stagedListItem) {
                         if (item.dataset.item === targetEl.dataset.item) {
-                            let numCounter = item.querySelector('.num-counter');
-                            numCounter.textContent = String(parseInt(item.querySelector('.num-counter').textContent) + 1);
+                            let quantityItem = item.querySelector('.num-counter');
+                            quantityItem.textContent = String(parseInt(item.querySelector('.num-counter').textContent) + 1);
                             isStaged = true;
                             break;
                         }
@@ -85,7 +91,7 @@ export default class VendingMachine {
                     }
                     if (targetEl.dataset.count) {
                         targetCount -= 1;
-                        targetEl.dataset.count = String(targetCount);
+                        targetEl.dataset.count = `${targetCount}`;
                     }
                     if (parseInt(targetEl.dataset.count) === 0) {
                         (_a = targetEl.parentElement) === null || _a === void 0 ? void 0 : _a.classList.add('sold-out');
@@ -107,8 +113,8 @@ export default class VendingMachine {
                 for (const itemGot of this.gotList.querySelectorAll('li')) {
                     let itemGotCount = itemGot.querySelector('.num-counter');
                     if (itemStaged.dataset.item === itemGot.dataset.item) {
-                        itemGotCount.textContent = String(parseInt(itemGotCount.textContent) +
-                            parseInt(itemStaged.querySelector('.num-counter').textContent));
+                        itemGotCount.textContent = `${parseInt(itemGotCount.textContent) +
+                            parseInt(itemStaged.querySelector('.num-counter').textContent)}`;
                         isGot = true;
                         break;
                     }
