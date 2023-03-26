@@ -46,19 +46,18 @@ export default class ColaGenerator {
       item.innerHTML = itemTemplate;
 
       const buttonItem = item.querySelector('.btn-item')! as HTMLButtonElement;
-      const imgItem = item.querySelector('.img-item')! as HTMLImageElement;
-      const titleItem = item.querySelector('.tit-item')! as HTMLElement;
-      const productCost = item.querySelector('.txt-price')! as HTMLSpanElement;
-
       buttonItem.dataset.item = el.name;
       buttonItem.dataset.count = `${el.count}`;
       buttonItem.dataset.price = `${el.cost}`;
       buttonItem.dataset.img = el.img;
 
+      const imgItem = item.querySelector('.img-item')! as HTMLImageElement;
       imgItem.src = `./src/assets/img/${el.img}`;
 
+      const titleItem = item.querySelector('.tit-item')! as HTMLElement;
       titleItem.textContent = el.name;
 
+      const productCost = item.querySelector('.txt-price')! as HTMLSpanElement;
       productCost.textContent = `${el.cost}원`;
 
       docFrag.appendChild(item);
