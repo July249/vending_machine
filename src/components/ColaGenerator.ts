@@ -12,7 +12,9 @@ export default class ColaGenerator {
   }
 
   async loadData(callback: (arg0: any) => void): Promise<void> {
-    const res = await fetch('../../public/data/item.json');
+    const res = await fetch(
+      'https://raw.githubusercontent.com/July249/vending_machine/main/public/data/item.json'
+    );
     if (res.status === 200) {
       callback(await res.json());
     } else {
