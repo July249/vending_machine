@@ -1,17 +1,19 @@
 export default class VendingMachine {
-  private balance: HTMLElement;
-  private itemList: HTMLElement;
+  private balance: HTMLSpanElement;
+  private itemList: HTMLUListElement;
   private inputCostEl: HTMLInputElement;
-  private btnPut: HTMLElement;
-  private btnReturn: HTMLElement;
-  private btnGet: HTMLElement;
-  private stagedList: HTMLElement;
-  private myMoney: HTMLElement;
-  private gotList: HTMLElement;
+  private btnPut: HTMLButtonElement;
+  private btnReturn: HTMLButtonElement;
+  private btnGet: HTMLButtonElement;
+  private stagedList: HTMLUListElement;
+  private myMoney: HTMLSpanElement;
+  private gotList: HTMLUListElement;
   private txtTotal: HTMLElement;
 
   constructor() {
-    const vendingMachine = document.querySelector('.vending-machine')!;
+    const vendingMachine = document.querySelector(
+      '.vending-machine'
+    )! as HTMLElement;
     this.balance = vendingMachine.querySelector('.txt-balance')!;
     this.itemList = vendingMachine.querySelector('.list-item')!;
     this.inputCostEl = vendingMachine.querySelector('.inp-put')!;
@@ -20,7 +22,7 @@ export default class VendingMachine {
     this.btnGet = vendingMachine.querySelector('.btn-get')!;
     this.stagedList = vendingMachine.querySelector('.list-item-staged')!;
 
-    const myinfo = document.querySelector('.my-info')!;
+    const myinfo = document.querySelector('.my-info')! as HTMLElement;
     this.myMoney = myinfo.querySelector('.txt-mymoney')!;
     this.gotList = myinfo.querySelector('.list-item-staged')!;
     this.txtTotal = myinfo.querySelector('.txt-total')!;
