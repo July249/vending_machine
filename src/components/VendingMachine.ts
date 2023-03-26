@@ -36,7 +36,7 @@ export default class VendingMachine {
     stagedItem.dataset.price = target.dataset.price!;
     stagedItem.innerHTML = `
       <button type="button" class="btn-staged">
-        <img src="../img/${target.dataset.img}" alt="" class="img-item">
+        <img src="./assets/img/${target.dataset.img}" alt="" class="img-item">
         <strong class="txt-item">${target.dataset.item}</strong>
         <span class="num-counter">1</span>
       </button>
@@ -88,8 +88,8 @@ export default class VendingMachine {
 
     const btnsCola = this.itemList.querySelectorAll('button');
 
-    btnsCola.forEach((item) => {
-      item.addEventListener('click', (e) => {
+    btnsCola.forEach((item: HTMLElement) => {
+      item.addEventListener('click', (e: MouseEvent) => {
         const targetEl = e.currentTarget as HTMLElement;
         const balanceVal = parseInt(
           this.balance.textContent!.replaceAll(',', '')
@@ -107,7 +107,12 @@ export default class VendingMachine {
 
           for (const item of stagedListItem) {
             if (item.dataset.item === targetEl.dataset.item) {
-              item.querySelector('.num-counter').textContent++;
+              let numCounter = item.querySelector(
+                '.num-counter'
+              )! as HTMLElement;
+              numCounter.textContent = String(
+                parseInt(item.querySelector('.num-counter')!.textContent!) + 1
+              );
               isStaged = true;
               break;
             }
@@ -117,9 +122,12 @@ export default class VendingMachine {
             this.stagedItemGenerator(targetEl);
           }
 
-          targetEl.dataset.count--;
+          if (targetEl.dataset.count) {
+            let numCounter = parseInt(targetEl.dataset.counter!);
+            numCounter--;
+          }
 
-          if (parseInt(targetEl.dataset.count) === 0) {
+          if (parseInt(targetEl.dataset.count!) === 0) {
             targetEl.parentElement?.classList.add('sold-out');
             const warning = document.createElement('em')! as HTMLElement;
             warning.textContent = '해당 상품은 품절입니다.';
@@ -133,16 +141,19 @@ export default class VendingMachine {
     });
 
     this.btnGet.addEventListener('click', () => {
-      let isGot = false;
-      let totalPrice = 0;
+      let isGot: boolean = false;
+      let totalPrice: number = 0;
 
       for (const itemStaged of this.stagedList.querySelectorAll('li')) {
         for (const itemGot of this.gotList.querySelectorAll('li')) {
-          let itemGotCount = itemGot.querySelector('.num-counter');
+          let itemGotCount = itemGot.querySelector(
+            '.num-counter'
+          )! as HTMLElement;
           if (itemStaged.dataset.item === itemGot.dataset.item) {
-            itemGotCount.textContent =
-              parseInt(itemGotCount.textContent) +
-              parseInt(itemStaged.querySelector('.num-counter').textContent);
+            itemGotCount.textContent = String(
+              parseInt(itemGotCount.textContent!) +
+                parseInt(itemStaged.querySelector('.num-counter')!.textContent!)
+            );
             isGot = true;
             break;
           }
@@ -152,12 +163,12 @@ export default class VendingMachine {
         }
       }
 
-      this.stagedList.innerHTML = null;
+      this.stagedList.innerHTML = '';
 
       this.gotList.querySelectorAll('li').forEach((itemGot) => {
         totalPrice +=
-          itemGot.dataset.price *
-          parseInt(itemGot.querySelector('.num-counter').textContent);
+          parseInt(itemGot.dataset.price!) *
+          parseInt(itemGot.querySelector('.num-counter')!.textContent!);
       });
       this.txtTotal.textContent = `총금액 : ${new Intl.NumberFormat().format(
         totalPrice
