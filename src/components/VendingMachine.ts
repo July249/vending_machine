@@ -36,7 +36,7 @@ export default class VendingMachine {
     stagedItem.dataset.price = target.dataset.price!;
     stagedItem.innerHTML = `
       <button type="button" class="btn-staged">
-        <img src="./assets/img/${target.dataset.img}" alt="" class="img-item">
+        <img src="./src/assets/img/${target.dataset.img}" alt="" class="img-item">
         <strong class="txt-item">${target.dataset.item}</strong>
         <span class="num-counter">1</span>
       </button>
@@ -97,6 +97,7 @@ export default class VendingMachine {
 
         let isStaged = false;
         const targetElPrice = parseInt(targetEl.dataset.price!);
+        let targetCount = parseInt(targetEl.dataset.count!);
         const stagedListItem = this.stagedList.querySelectorAll(
           'li'
         )! as NodeListOf<HTMLLIElement>;
@@ -123,8 +124,8 @@ export default class VendingMachine {
           }
 
           if (targetEl.dataset.count) {
-            let numCounter = parseInt(targetEl.dataset.counter!);
-            numCounter--;
+            targetCount -= 1;
+            targetEl.dataset.count = String(targetCount);
           }
 
           if (parseInt(targetEl.dataset.count!) === 0) {
