@@ -189,6 +189,7 @@ body {
 }
 
 .list-item-staged .btn-staged {
+  position: relative;
   width: 100%;
   padding: 8px;
 }
@@ -215,6 +216,15 @@ body {
   height: 32px;
 }
 
+.list-item-staged .btn-unstaged {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+}
+
+.list-item-staged .fa-circle-minus {
+  font-size: 20px;
+}
 /* 스크롤바 스타일 */
 .list-item-staged::-webkit-scrollbar {
   width: 4px;
