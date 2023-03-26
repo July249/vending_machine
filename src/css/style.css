@@ -220,6 +220,7 @@ body {
   position: absolute;
   top: -8px;
   right: -8px;
+  cursor: pointer;
 }
 
 .list-item-staged .fa-circle-minus {
