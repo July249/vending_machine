@@ -45,7 +45,17 @@ export default class VendingMachine {
                 const docFrag = document.createDocumentFragment();
                 const unstagedBtn = targetEl.parentElement;
                 const stagedItemList = this.stagedList.querySelectorAll('li');
-                const updatedStagedItemList = Array.prototype.filter.call(stagedItemList, (item) => { var _a; return ((_a = item.dataset) === null || _a === void 0 ? void 0 : _a.item) !== (unstagedBtn === null || unstagedBtn === void 0 ? void 0 : unstagedBtn.id); });
+                const updatedStagedItemList = Array.prototype.filter.call(stagedItemList, (item) => {
+                    var _a, _b, _c, _d;
+                    if (((_a = item.dataset) === null || _a === void 0 ? void 0 : _a.item) === (unstagedBtn === null || unstagedBtn === void 0 ? void 0 : unstagedBtn.id)) {
+                        const quantityItem = item.querySelector('.num-counter');
+                        const quantity = parseInt(quantityItem.textContent);
+                        let currentBalance = parseInt((_b = this.balance.textContent) === null || _b === void 0 ? void 0 : _b.replaceAll(',', ''));
+                        currentBalance += parseInt((_c = item.dataset) === null || _c === void 0 ? void 0 : _c.price) * quantity;
+                        this.balance.textContent = new Intl.NumberFormat().format(currentBalance);
+                    }
+                    return ((_d = item.dataset) === null || _d === void 0 ? void 0 : _d.item) !== (unstagedBtn === null || unstagedBtn === void 0 ? void 0 : unstagedBtn.id);
+                });
                 for (const list of updatedStagedItemList) {
                     docFrag.appendChild(list);
                 }
@@ -61,8 +71,7 @@ export default class VendingMachine {
                 if (inputCost <= myMoneyVal) {
                     this.myMoney.textContent =
                         new Intl.NumberFormat().format(myMoneyVal - inputCost) + ' 원';
-                    this.balance.textContent =
-                        new Intl.NumberFormat().format((balanceVal ? balanceVal : 0) + inputCost) + ' 원';
+                    this.balance.textContent = new Intl.NumberFormat().format((balanceVal ? balanceVal : 0) + inputCost);
                 }
                 else {
                     alert('소지금이 부족합니다.');
@@ -76,7 +85,7 @@ export default class VendingMachine {
             if (balanceVal) {
                 this.myMoney.textContent =
                     new Intl.NumberFormat().format(balanceVal + myMoneyVal) + '원';
-                this.balance.textContent = '원';
+                this.balance.textContent = '0';
             }
             else {
                 alert('반환될 거스름돈이 없습니다.');
@@ -93,8 +102,7 @@ export default class VendingMachine {
                 let targetCount = parseInt(targetEl.dataset.count);
                 const stagedListItem = this.stagedList.querySelectorAll('li');
                 if (balanceVal >= targetElPrice) {
-                    this.balance.textContent =
-                        new Intl.NumberFormat().format(balanceVal - targetElPrice) + '원';
+                    this.balance.textContent = new Intl.NumberFormat().format(balanceVal - targetElPrice);
                     for (const item of stagedListItem) {
                         if (item.dataset.item === targetEl.dataset.item) {
                             let quantityItem = item.querySelector('.num-counter');
