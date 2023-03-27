@@ -1,0 +1,18 @@
+@use '../abstracts' as abstract;
+
+.tit-app {
+  position: absolute;
+  width: abstract.rem(386);
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @include abstract.breakpoints(medium, large) {
+    width: abstract.rem(166);
+  }
+
+  .img-item {
+    width: 100%;
+    display: block;
+  }
+}
