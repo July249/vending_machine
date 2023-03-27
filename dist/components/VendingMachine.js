@@ -25,8 +25,11 @@ export default class VendingMachine {
         <img src="" alt="" class="img-item">
         <strong class="txt-item"></strong>
         <span class="num-counter">1</span>
+        <div class="btn-unstaged"><i class="fa-solid fa-circle-minus" style="color: #f03f3f;"></i></div>
       </button>
     `;
+        const unstagedBtn = stagedItem.querySelector('.btn-unstaged');
+        unstagedBtn.id = `${target.dataset.item}`;
         const imgItem = stagedItem.querySelector('.img-item');
         imgItem.src = `./src/assets/img/${target.dataset.img}`;
         const titleItem = stagedItem.querySelector('.txt-item');
@@ -36,6 +39,20 @@ export default class VendingMachine {
         this.stagedList.appendChild(stagedItem);
     }
     bindEvents() {
+        this.stagedList.addEventListener('click', (e) => {
+            const targetEl = e.target;
+            if (targetEl.classList.contains('fa-circle-minus')) {
+                const docFrag = document.createDocumentFragment();
+                const unstagedBtn = targetEl.parentElement;
+                const stagedItemList = this.stagedList.querySelectorAll('li');
+                const updatedStagedItemList = Array.prototype.filter.call(stagedItemList, (item) => { var _a; return ((_a = item.dataset) === null || _a === void 0 ? void 0 : _a.item) !== (unstagedBtn === null || unstagedBtn === void 0 ? void 0 : unstagedBtn.id); });
+                for (const list of updatedStagedItemList) {
+                    docFrag.appendChild(list);
+                }
+                this.stagedList.innerHTML = '';
+                this.stagedList.append(docFrag);
+            }
+        });
         this.btnPut.addEventListener('click', () => {
             const inputCost = parseInt(this.inputCostEl.value);
             const myMoneyVal = parseInt(this.myMoney.textContent.replaceAll(',', ''));
@@ -81,7 +98,7 @@ export default class VendingMachine {
                     for (const item of stagedListItem) {
                         if (item.dataset.item === targetEl.dataset.item) {
                             let quantityItem = item.querySelector('.num-counter');
-                            quantityItem.textContent = String(parseInt(item.querySelector('.num-counter').textContent) + 1);
+                            quantityItem.textContent = `${parseInt(item.querySelector('.num-counter').textContent) + 1}`;
                             isStaged = true;
                             break;
                         }
