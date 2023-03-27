@@ -1,0 +1,15 @@
+@use 'functions' as func;
+
+$breakpoints-up: (
+  'medium': func.rem(320),
+);
+
+$breakpoints-down: (
+  'large': func.rem(480),
+);
+
+@mixin breakpoint($minSize, $maxSize) {
+  @media (min-width: map-get($breakpoints-up, $minSize)) and (max-width: map-get($breakpoints-down, $maxSize)) and (-webkit-min-device-pixel-ratio: 1) {
+    @content;
+  }
+}
