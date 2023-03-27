@@ -41,8 +41,14 @@ export default class VendingMachine {
         <img src="" alt="" class="img-item">
         <strong class="txt-item"></strong>
         <span class="num-counter">1</span>
+        <div class="btn-unstaged"><i class="fa-solid fa-circle-minus" style="color: #f03f3f;"></i></div>
       </button>
     `;
+
+    const unstagedBtn = stagedItem.querySelector(
+      '.btn-unstaged'
+    )! as HTMLDivElement;
+    unstagedBtn.id = `${target.dataset.item}`;
 
     const imgItem = stagedItem.querySelector('.img-item')! as HTMLImageElement;
     imgItem.src = `./src/assets/img/${target.dataset.img}`;
@@ -59,6 +65,29 @@ export default class VendingMachine {
   }
 
   private bindEvents(): void {
+    this.stagedList.addEventListener('click', (e: MouseEvent) => {
+      const targetEl = e.target! as HTMLElement;
+      if (targetEl.classList.contains('fa-circle-minus')) {
+        const docFrag = document.createDocumentFragment();
+        const unstagedBtn = targetEl.parentElement;
+        const stagedItemList = this.stagedList.querySelectorAll(
+          'li'
+        )! as NodeListOf<HTMLLIElement>;
+        const updatedStagedItemList: HTMLLIElement[] =
+          Array.prototype.filter.call(
+            stagedItemList,
+            (item: HTMLLIElement) => item.dataset?.item !== unstagedBtn?.id!
+          );
+
+        for (const list of updatedStagedItemList) {
+          docFrag.appendChild(list);
+        }
+
+        this.stagedList.innerHTML = '';
+        this.stagedList.append(docFrag);
+      }
+    });
+
     this.btnPut.addEventListener('click', () => {
       const inputCost = parseInt(this.inputCostEl.value);
       const myMoneyVal = parseInt(
@@ -127,9 +156,9 @@ export default class VendingMachine {
               let quantityItem = item.querySelector(
                 '.num-counter'
               )! as HTMLElement;
-              quantityItem.textContent = String(
+              quantityItem.textContent = `${
                 parseInt(item.querySelector('.num-counter')!.textContent!) + 1
-              );
+              }`;
               isStaged = true;
               break;
             }
