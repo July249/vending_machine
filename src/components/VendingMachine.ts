@@ -73,11 +73,15 @@ export default class VendingMachine {
         const stagedItemList = this.stagedList.querySelectorAll(
           'li'
         )! as NodeListOf<HTMLLIElement>;
+
         const updatedStagedItemList: HTMLLIElement[] =
-          Array.prototype.filter.call(
-            stagedItemList,
-            (item: HTMLLIElement) => item.dataset?.item !== unstagedBtn?.id!
-          );
+          Array.prototype.filter.call(stagedItemList, (item: HTMLLIElement) => {
+            if (item.dataset?.item === unstagedBtn?.id) {
+              console.log(this.myMoney.textContent);
+              console.log(item.dataset?.price);
+            }
+            return item.dataset?.item !== unstagedBtn?.id!;
+          });
 
         for (const list of updatedStagedItemList) {
           docFrag.appendChild(list);
