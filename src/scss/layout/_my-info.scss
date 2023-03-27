@@ -1,0 +1,53 @@
+@use '../abstracts' as abstract;
+
+.my-info {
+  flex-basis: abstract.rem(360);
+  padding: 31px 27px 28px;
+  background-color: #fff;
+
+  .cont-mymoney {
+    margin-bottom: 20px;
+    background-color: #fff;
+  }
+
+  .info-mymoney {
+    padding: 6px 10px;
+    background-color: #eae8fe;
+    border-radius: 5px;
+    line-height: 20px;
+
+    .txt-mymoney {
+      float: right;
+      font-weight: 700;
+    }
+  }
+
+  .cont-myitems {
+    background-color: #fff;
+
+    .tit-myitem {
+      display: block;
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 13px;
+      line-height: 20px;
+    }
+  }
+
+  .list-item-staged {
+    height: 368px;
+
+    li {
+      overflow: hidden;
+      padding: 8px;
+    }
+  }
+
+  .txt-total {
+    display: block;
+    text-align: right;
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 17px;
+  }
+}
