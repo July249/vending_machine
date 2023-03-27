@@ -1,0 +1,36 @@
+@use '../abstracts' as abstract;
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  // 기본 폰트 사이즈 변경 - 16px => 10px
+  // font-size: 62.5%;
+}
+
+body {
+  background-color: var(--bg-color);
+
+  @include abstract.breakpoints(medium, large) {
+    background-color: var(--app-color);
+  }
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0 abstract.rem(28);
+  padding-top: abstract.rem(247);
+  font-family: var(--Noto-Sans);
+  font-weight: 500;
+
+  @include abstract.breakpoints(medium, large) {
+    padding-top: abstract.rem(96);
+  }
+}
