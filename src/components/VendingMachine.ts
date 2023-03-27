@@ -105,10 +105,9 @@ export default class VendingMachine {
         if (inputCost <= myMoneyVal) {
           this.myMoney.textContent =
             new Intl.NumberFormat().format(myMoneyVal - inputCost) + ' 원';
-          this.balance.textContent =
-            new Intl.NumberFormat().format(
-              (balanceVal ? balanceVal : 0) + inputCost
-            ) + ' 원';
+          this.balance.textContent = new Intl.NumberFormat().format(
+            (balanceVal ? balanceVal : 0) + inputCost
+          );
         } else {
           alert('소지금이 부족합니다.');
         }
@@ -127,7 +126,7 @@ export default class VendingMachine {
       if (balanceVal) {
         this.myMoney.textContent =
           new Intl.NumberFormat().format(balanceVal + myMoneyVal) + '원';
-        this.balance.textContent = '원';
+        this.balance.textContent = '';
       } else {
         alert('반환될 거스름돈이 없습니다.');
       }
@@ -152,8 +151,9 @@ export default class VendingMachine {
         )! as NodeListOf<HTMLLIElement>;
 
         if (balanceVal >= targetElPrice) {
-          this.balance.textContent =
-            new Intl.NumberFormat().format(balanceVal - targetElPrice) + '원';
+          this.balance.textContent = new Intl.NumberFormat().format(
+            balanceVal - targetElPrice
+          );
 
           for (const item of stagedListItem) {
             if (item.dataset.item === targetEl.dataset.item) {
