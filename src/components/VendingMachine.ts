@@ -77,8 +77,21 @@ export default class VendingMachine {
         const updatedStagedItemList: HTMLLIElement[] =
           Array.prototype.filter.call(stagedItemList, (item: HTMLLIElement) => {
             if (item.dataset?.item === unstagedBtn?.id) {
-              console.log(this.myMoney.textContent);
-              console.log(item.dataset?.price);
+              const quantityItem = item.querySelector(
+                '.num-counter'
+              )! as HTMLSpanElement;
+
+              const quantity = parseInt(quantityItem.textContent!);
+
+              let currentBalance: number = parseInt(
+                this.balance.textContent?.replaceAll(',', '')!
+              );
+
+              currentBalance += parseInt(item.dataset?.price!) * quantity;
+
+              this.balance.textContent = new Intl.NumberFormat().format(
+                currentBalance
+              );
             }
             return item.dataset?.item !== unstagedBtn?.id!;
           });
@@ -126,7 +139,7 @@ export default class VendingMachine {
       if (balanceVal) {
         this.myMoney.textContent =
           new Intl.NumberFormat().format(balanceVal + myMoneyVal) + '원';
-        this.balance.textContent = '';
+        this.balance.textContent = '0';
       } else {
         alert('반환될 거스름돈이 없습니다.');
       }
