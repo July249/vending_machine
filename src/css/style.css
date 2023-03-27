@@ -145,12 +145,22 @@ body {
 }
 
 .cont-buy .info-balance {
+  position: relative;
   padding: 6px 10px;
   background-color: #eae8fe;
 }
 
 .cont-buy .info-balance .txt-balance {
+  padding-right: 18px;
   float: right;
+}
+
+.cont-buy .info-balance .txt-balance::after {
+  display: inline-block;
+  position: absolute;
+  content: '원';
+  top: 6px;
+  right: 10px;
 }
 
 .cont-buy .inp-put {
