@@ -1,0 +1,55 @@
+@use '../components' as component;
+
+.list-item-staged {
+  @include component.stagedList;
+
+  li {
+    border-radius: 5px;
+    background-color: #fff;
+
+    + li {
+      margin-top: 6px;
+    }
+  }
+
+  .img-item {
+    float: left;
+    width: 18px;
+    height: 32px;
+  }
+
+  .txt-item {
+    float: left;
+    margin-left: 10px;
+    line-height: 32px;
+    font-size: 9px;
+  }
+
+  .num-counter {
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+  }
+
+  .btn-staged {
+    position: relative;
+    width: 100%;
+    padding: 8px;
+  }
+
+  .btn-unstaged {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    cursor: pointer;
+  }
+
+  .fa-circle-minus {
+    font-size: 20px;
+  }
+}
