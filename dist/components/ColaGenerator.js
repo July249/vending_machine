@@ -25,10 +25,8 @@ export default class ColaGenerator {
         const res = await fetch('https://raw.githubusercontent.com/July249/vending_machine/main/public/data/item.json');
         if (res.status === 200) {
             const data = (await res.json());
-            console.log(isColaItem(data));
             if (isColaItem(data)) {
                 callback(data);
-                console.log(data);
             }
         }
         else {
