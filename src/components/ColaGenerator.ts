@@ -14,7 +14,7 @@ export default class ColaGenerator {
     });
   }
 
-  private async loadData(callback: (arg: ColaItem[]) => void): Promise<void> {
+  async loadData(callback: (arg: ColaItem[]) => void): Promise<void> {
     const res = await fetch(
       'https://raw.githubusercontent.com/July249/vending_machine/main/public/data/item.json'
     );
