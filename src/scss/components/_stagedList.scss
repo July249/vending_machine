@@ -1,33 +1,33 @@
-@use '../abstracts/' as abstract;
+@use '../abstracts' as abstract;
 
 @mixin stagedList {
-  border-radius: 5px;
+  border-radius: abstract.rem(5);
   overflow-y: scroll;
-  border: 1px solid #bdbdbd;
-  border-radius: 5px;
+  border: abstract.rem(1) solid #bdbdbd;
+  border-radius: abstract.rem(5);
   background-color: #eae8fe;
-  padding: 8px 8px 8px 12px;
+  padding: abstract.rem(8) abstract.rem(8) abstract.rem(8) abstract.rem(12);
 
   li {
-    border-radius: 5px;
+    border-radius: abstract.rem(5);
     background-color: #fff;
 
     + li {
-      margin-top: 6px;
+      margin-top: abstract.rem(6);
     }
   }
 
   .img-item {
     float: left;
-    width: 18px;
-    height: 32px;
+    width: abstract.rem(18);
+    height: abstract.rem(32);
   }
 
   .txt-item {
     float: left;
-    margin-left: 10px;
-    line-height: 32px;
-    font-size: 9px;
+    margin-left: abstract.rem(10);
+    line-height: abstract.rem(32);
+    font-size: abstract.rem(9);
   }
 
   .num-counter {
@@ -35,44 +35,44 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30px;
-    height: 30px;
-    border: 1px solid #bdbdbd;
-    border-radius: 5px;
+    width: abstract.rem(30);
+    height: abstract.rem(30);
+    border: abstract.rem(1) solid #bdbdbd;
+    border-radius: abstract.rem(5);
   }
 
   .btn-staged {
     position: relative;
     width: 100%;
-    padding: 8px;
+    padding: abstract.rem(8);
   }
 
   .btn-unstaged {
     position: absolute;
-    top: -4px;
-    right: -4px;
+    top: abstract.rem(-4);
+    right: abstract.rem(-4);
     cursor: pointer;
   }
 
   .fa-circle-minus {
-    font-size: 20px;
+    font-size: abstract.rem(20);
   }
 
   // For Window OS users, scrollbar style setting
-  border-top: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-bottom: 4px solid transparent;
+  border-top: abstract.rem(4) solid transparent;
+  border-right: abstract.rem(4) solid transparent;
+  border-bottom: abstract.rem(4) solid transparent;
 
   // Scrollbar style
   &::-webkit-scrollbar {
-    width: 4px;
+    width: abstract.rem(4);
   }
   &::-webkit-scrollbar-button {
     width: 0;
     height: 0;
   }
   &::-webkit-scrollbar-thumb {
-    border-radius: 50px;
+    border-radius: abstract.rem(50);
     background: #a2a2a2;
   }
   &::-webkit-scrollbar-track {

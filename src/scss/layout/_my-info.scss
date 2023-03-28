@@ -3,19 +3,19 @@
 
 .my-info {
   flex-basis: abstract.rem(360);
-  padding: 31px 27px 28px;
+  padding: abstract.rem(31) abstract.rem(27) abstract.rem(28);
   background-color: #fff;
 
   .cont-mymoney {
-    margin-bottom: 20px;
+    margin-bottom: abstract.rem(20);
     background-color: #fff;
   }
 
   .info-mymoney {
-    padding: 6px 10px;
+    padding: abstract.rem(6) abstract.rem(10);
     background-color: #eae8fe;
-    border-radius: 5px;
-    line-height: 20px;
+    border-radius: abstract.rem(5);
+    line-height: abstract.rem(20);
 
     .txt-mymoney {
       float: right;
@@ -30,19 +30,19 @@
       display: block;
       text-align: center;
       font-weight: 700;
-      margin-bottom: 13px;
-      line-height: 20px;
+      margin-bottom: abstract.rem(13);
+      line-height: abstract.rem(20);
     }
   }
 
   .list-item-staged {
     @include component.stagedList {
-      height: 368px;
+      height: abstract.rem(368);
     }
 
     li {
       overflow: hidden;
-      padding: 8px;
+      padding: abstract.rem(8);
 
       .btn-unstaged {
         display: none;
@@ -53,8 +53,8 @@
   .txt-total {
     display: block;
     text-align: right;
-    margin-top: 6px;
-    font-size: 12px;
-    line-height: 17px;
+    margin-top: abstract.rem(6);
+    font-size: abstract.rem(12);
+    line-height: abstract.rem(17);
   }
 }
