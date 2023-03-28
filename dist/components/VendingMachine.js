@@ -97,8 +97,12 @@ export default class VendingMachine {
                         colaQuantity += quantity;
                         targetEl.firstElementChild.attributes[3].value =
                             colaQuantity.toString();
-                        targetEl.classList.remove('sold-out');
-                        targetEl.firstElementChild.removeAttribute('disabled');
+                        if (targetEl.classList.contains('sold-out')) {
+                            targetEl.classList.remove('sold-out');
+                        }
+                        if (targetEl.firstElementChild.hasAttribute('disabled')) {
+                            targetEl.firstElementChild.removeAttribute('disabled');
+                        }
                     }
                     return stagedItem.dataset.item !== unstagedBtn.id;
                 });
