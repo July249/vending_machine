@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "node-sass -w -r src/scss/style.scss src/css/style.css ",
+    "sass": "node-sass -w -r ",
     "build": "webpack"
   },
   "repository": {
