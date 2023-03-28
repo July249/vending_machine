@@ -20,10 +20,8 @@ export default class ColaGenerator {
     );
     if (res.status === 200) {
       const data = (await res.json()) as ColaItem[];
-      console.log(isColaItem(data));
       if (isColaItem(data)) {
         callback(data);
-        console.log(data);
       }
     } else {
       new Error(`Connect Error: ${res.status}`);
