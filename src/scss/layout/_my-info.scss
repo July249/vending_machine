@@ -1,4 +1,5 @@
 @use '../abstracts' as abstract;
+@use '../components' as component;
 
 .my-info {
   flex-basis: abstract.rem(360);
@@ -35,7 +36,9 @@
   }
 
   .list-item-staged {
-    height: 368px;
+    @include component.stagedList {
+      height: 368px;
+    }
 
     li {
       overflow: hidden;
