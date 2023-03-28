@@ -28,7 +28,6 @@ export default class ColaGenerator {
             if (isColaItem(data)) {
                 callback(data);
             }
-            Array.isArray(data);
         }
         else {
             new Error(`Connect Error: ${res.status}`);
