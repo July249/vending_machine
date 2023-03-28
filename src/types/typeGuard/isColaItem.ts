@@ -1,5 +1,6 @@
 import type { ColaItem } from '../colaItem';
 
+// ColaItem 타입을 가진 배열인지 확인하는 타입 가드
 export const isColaItem = (item: any): item is ColaItem[] => {
   if (!Array.isArray(item)) return false;
   if (item.length === 0) return false;
