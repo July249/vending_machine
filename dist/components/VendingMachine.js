@@ -85,7 +85,8 @@ export default class VendingMachine {
                             return;
                         }
                         currentBalance += parseInt(stagedItem.dataset.price) * quantity;
-                        __classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent = numberFormat(currentBalance);
+                        __classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent =
+                            numberFormat(currentBalance).toString();
                         // update itemList quantity value when unstaged item is clicked
                         const itemList = __classPrivateFieldGet(this, _VendingMachine_itemList, "f").querySelectorAll('li');
                         const targetEl = Array.prototype.find.call(itemList, (cola) => cola.children[0].children[1].textContent ===
@@ -131,7 +132,7 @@ export default class VendingMachine {
             if (inputCost <= myMoneyVal) {
                 const changedValue = myMoneyVal - inputCost;
                 __classPrivateFieldGet(this, _VendingMachine_myMoney, "f").textContent = numberFormat(changedValue) + ' 원';
-                __classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent = numberFormat((balanceVal ? balanceVal : 0) + inputCost);
+                __classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent = numberFormat((balanceVal ? balanceVal : 0) + inputCost).toString();
             }
             else {
                 alert('소지금이 부족합니다.');
@@ -173,7 +174,7 @@ export default class VendingMachine {
                 const stagedListItem = __classPrivateFieldGet(this, _VendingMachine_stagedList, "f").querySelectorAll('li');
                 if (balanceVal >= targetElPrice) {
                     const withdraw = balanceVal - targetElPrice;
-                    __classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent = numberFormat(withdraw);
+                    __classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent = numberFormat(withdraw).toString();
                     for (const item of stagedListItem) {
                         if (!item.dataset.item || !targetEl.dataset.item) {
                             return;
