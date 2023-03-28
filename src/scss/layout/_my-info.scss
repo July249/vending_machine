@@ -43,6 +43,10 @@
     li {
       overflow: hidden;
       padding: 8px;
+
+      .btn-unstaged {
+        display: none;
+      }
     }
   }
 
