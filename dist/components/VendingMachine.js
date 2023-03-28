@@ -1,17 +1,40 @@
+var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+};
+var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+};
+var _VendingMachine_balance, _VendingMachine_itemList, _VendingMachine_inputCostEl, _VendingMachine_btnPut, _VendingMachine_btnReturn, _VendingMachine_btnGet, _VendingMachine_stagedList, _VendingMachine_myMoney, _VendingMachine_gotList, _VendingMachine_txtTotal;
+import numberFormat from '../util/numberFormat';
 export default class VendingMachine {
     constructor() {
+        _VendingMachine_balance.set(this, void 0);
+        _VendingMachine_itemList.set(this, void 0);
+        _VendingMachine_inputCostEl.set(this, void 0);
+        _VendingMachine_btnPut.set(this, void 0);
+        _VendingMachine_btnReturn.set(this, void 0);
+        _VendingMachine_btnGet.set(this, void 0);
+        _VendingMachine_stagedList.set(this, void 0);
+        _VendingMachine_myMoney.set(this, void 0);
+        _VendingMachine_gotList.set(this, void 0);
+        _VendingMachine_txtTotal.set(this, void 0);
         const vendingMachine = document.querySelector('.vending-machine');
-        this.balance = vendingMachine.querySelector('.txt-balance');
-        this.itemList = vendingMachine.querySelector('.list-item');
-        this.inputCostEl = vendingMachine.querySelector('.inp-put');
-        this.btnPut = vendingMachine.querySelector('.btn-put');
-        this.btnReturn = vendingMachine.querySelector('.btn-return');
-        this.btnGet = vendingMachine.querySelector('.btn-get');
-        this.stagedList = vendingMachine.querySelector('.list-item-staged');
+        __classPrivateFieldSet(this, _VendingMachine_balance, vendingMachine.querySelector('.txt-balance'), "f");
+        __classPrivateFieldSet(this, _VendingMachine_itemList, document.querySelector('.list-item'), "f");
+        __classPrivateFieldSet(this, _VendingMachine_inputCostEl, vendingMachine.querySelector('.inp-put'), "f");
+        __classPrivateFieldSet(this, _VendingMachine_btnPut, vendingMachine.querySelector('.btn-put'), "f");
+        __classPrivateFieldSet(this, _VendingMachine_btnReturn, vendingMachine.querySelector('.btn-return'), "f");
+        __classPrivateFieldSet(this, _VendingMachine_btnGet, vendingMachine.querySelector('.btn-get'), "f");
+        __classPrivateFieldSet(this, _VendingMachine_stagedList, vendingMachine.querySelector('.list-item-staged'), "f");
         const myinfo = document.querySelector('.my-info');
-        this.myMoney = myinfo.querySelector('.txt-mymoney');
-        this.gotList = myinfo.querySelector('.list-item-staged');
-        this.txtTotal = myinfo.querySelector('.txt-total');
+        __classPrivateFieldSet(this, _VendingMachine_myMoney, myinfo.querySelector('.txt-mymoney'), "f");
+        __classPrivateFieldSet(this, _VendingMachine_gotList, myinfo.querySelector('.list-item-staged'), "f");
+        __classPrivateFieldSet(this, _VendingMachine_txtTotal, myinfo.querySelector('.txt-total'), "f");
     }
     setup() {
         this.bindEvents();
@@ -33,80 +56,105 @@ export default class VendingMachine {
         const imgItem = stagedItem.querySelector('.img-item');
         imgItem.src = `./src/assets/img/${target.dataset.img}`;
         const titleItem = stagedItem.querySelector('.txt-item');
-        titleItem.textContent = `${target.dataset.item}`;
+        titleItem.textContent = target.dataset.item || '';
         const quantityItem = stagedItem.querySelector('.num-counter');
         quantityItem.textContent = '1';
-        this.stagedList.appendChild(stagedItem);
+        __classPrivateFieldGet(this, _VendingMachine_stagedList, "f").appendChild(stagedItem);
     }
     bindEvents() {
-        this.stagedList.addEventListener('click', (e) => {
+        __classPrivateFieldGet(this, _VendingMachine_stagedList, "f").addEventListener('click', (e) => {
             const targetEl = e.target;
             if (targetEl.classList.contains('fa-circle-minus')) {
                 const docFrag = document.createDocumentFragment();
                 const unstagedBtn = targetEl.parentElement;
-                const stagedItemList = this.stagedList.querySelectorAll('li');
+                const stagedItemList = __classPrivateFieldGet(this, _VendingMachine_stagedList, "f").querySelectorAll('li');
                 const updatedStagedItemList = Array.prototype.filter.call(stagedItemList, (item) => {
                     var _a, _b, _c, _d;
                     if (((_a = item.dataset) === null || _a === void 0 ? void 0 : _a.item) === (unstagedBtn === null || unstagedBtn === void 0 ? void 0 : unstagedBtn.id)) {
                         const quantityItem = item.querySelector('.num-counter');
+                        if (typeof quantityItem.textContent !== 'string') {
+                            return;
+                        }
                         const quantity = parseInt(quantityItem.textContent);
-                        let currentBalance = parseInt((_b = this.balance.textContent) === null || _b === void 0 ? void 0 : _b.replaceAll(',', ''));
+                        let currentBalance = parseInt((_b = __classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent) === null || _b === void 0 ? void 0 : _b.replaceAll(',', ''));
                         currentBalance += parseInt((_c = item.dataset) === null || _c === void 0 ? void 0 : _c.price) * quantity;
-                        this.balance.textContent = new Intl.NumberFormat().format(currentBalance);
+                        __classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent = numberFormat(currentBalance);
                     }
                     return ((_d = item.dataset) === null || _d === void 0 ? void 0 : _d.item) !== (unstagedBtn === null || unstagedBtn === void 0 ? void 0 : unstagedBtn.id);
                 });
-                for (const list of updatedStagedItemList) {
-                    docFrag.appendChild(list);
-                }
-                this.stagedList.innerHTML = '';
-                this.stagedList.append(docFrag);
+                updatedStagedItemList.forEach((list) => docFrag.appendChild(list));
+                __classPrivateFieldGet(this, _VendingMachine_stagedList, "f").innerHTML = '';
+                __classPrivateFieldGet(this, _VendingMachine_stagedList, "f").append(docFrag);
             }
         });
-        this.btnPut.addEventListener('click', () => {
-            const inputCost = parseInt(this.inputCostEl.value);
-            const myMoneyVal = parseInt(this.myMoney.textContent.replaceAll(',', ''));
-            const balanceVal = parseInt(this.balance.textContent.replaceAll(',', ''));
-            if (inputCost) {
-                if (inputCost <= myMoneyVal) {
-                    this.myMoney.textContent =
-                        new Intl.NumberFormat().format(myMoneyVal - inputCost) + ' 원';
-                    this.balance.textContent = new Intl.NumberFormat().format((balanceVal ? balanceVal : 0) + inputCost);
-                }
-                else {
-                    alert('소지금이 부족합니다.');
-                }
-                this.inputCostEl.value = null;
+        __classPrivateFieldGet(this, _VendingMachine_btnPut, "f").addEventListener('click', () => {
+            if (typeof __classPrivateFieldGet(this, _VendingMachine_inputCostEl, "f").value !== 'string') {
+                return;
+            }
+            if (typeof __classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent !== 'string') {
+                return;
+            }
+            if (typeof __classPrivateFieldGet(this, _VendingMachine_myMoney, "f").textContent !== 'string') {
+                return;
+            }
+            const inputCost = parseInt(__classPrivateFieldGet(this, _VendingMachine_inputCostEl, "f").value);
+            const myMoneyVal = parseInt(__classPrivateFieldGet(this, _VendingMachine_myMoney, "f").textContent.replaceAll(',', ''));
+            const balanceVal = parseInt(__classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent.replaceAll(',', ''));
+            if (!inputCost) {
+                return;
+            }
+            if (inputCost <= myMoneyVal) {
+                const changedValue = myMoneyVal - inputCost;
+                __classPrivateFieldGet(this, _VendingMachine_myMoney, "f").textContent = numberFormat(changedValue) + ' 원';
+                __classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent = numberFormat((balanceVal ? balanceVal : 0) + inputCost);
+            }
+            else {
+                alert('소지금이 부족합니다.');
             }
         });
-        this.btnReturn.addEventListener('click', () => {
-            const balanceVal = parseInt(this.balance.textContent.replaceAll(',', ''));
-            const myMoneyVal = parseInt(this.myMoney.textContent.replaceAll(',', ''));
+        __classPrivateFieldGet(this, _VendingMachine_btnReturn, "f").addEventListener('click', () => {
+            if (typeof __classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent !== 'string') {
+                return;
+            }
+            if (typeof __classPrivateFieldGet(this, _VendingMachine_myMoney, "f").textContent !== 'string') {
+                return;
+            }
+            const balanceVal = parseInt(__classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent.replaceAll(',', ''));
+            const myMoneyVal = parseInt(__classPrivateFieldGet(this, _VendingMachine_myMoney, "f").textContent.replaceAll(',', ''));
             if (balanceVal) {
-                this.myMoney.textContent =
-                    new Intl.NumberFormat().format(balanceVal + myMoneyVal) + '원';
-                this.balance.textContent = '0';
+                const returnMoney = balanceVal + myMoneyVal;
+                __classPrivateFieldGet(this, _VendingMachine_myMoney, "f").textContent = numberFormat(returnMoney) + '원';
+                __classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent = '0';
             }
             else {
                 alert('반환될 거스름돈이 없습니다.');
             }
         });
-        const btnsCola = this.itemList.querySelectorAll('button');
+        const btnsCola = __classPrivateFieldGet(this, _VendingMachine_itemList, "f").querySelectorAll('button');
         btnsCola.forEach((item) => {
             item.addEventListener('click', (e) => {
-                var _a, _b;
+                var _a;
                 const targetEl = e.currentTarget;
-                const balanceVal = parseInt(this.balance.textContent.replaceAll(',', ''));
+                const balanceVal = parseInt(__classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent.replaceAll(',', ''));
                 let isStaged = false;
+                if (!targetEl.dataset.price) {
+                    return;
+                }
                 const targetElPrice = parseInt(targetEl.dataset.price);
-                let targetCount = parseInt(targetEl.dataset.count);
-                const stagedListItem = this.stagedList.querySelectorAll('li');
+                const stagedListItem = __classPrivateFieldGet(this, _VendingMachine_stagedList, "f").querySelectorAll('li');
                 if (balanceVal >= targetElPrice) {
-                    this.balance.textContent = new Intl.NumberFormat().format(balanceVal - targetElPrice);
+                    const withdraw = balanceVal - targetElPrice;
+                    __classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent = numberFormat(withdraw);
                     for (const item of stagedListItem) {
+                        if (!item.dataset.item || !targetEl.dataset.item) {
+                            return;
+                        }
                         if (item.dataset.item === targetEl.dataset.item) {
                             let quantityItem = item.querySelector('.num-counter');
-                            quantityItem.textContent = `${parseInt(item.querySelector('.num-counter').textContent) + 1}`;
+                            if (typeof quantityItem.textContent !== 'string') {
+                                return;
+                            }
+                            quantityItem.textContent = `${parseInt(quantityItem.textContent) + 1}`;
                             isStaged = true;
                             break;
                         }
@@ -115,15 +163,19 @@ export default class VendingMachine {
                         this.stagedItemGenerator(targetEl);
                     }
                     if (targetEl.dataset.count) {
+                        let targetCount = parseInt(targetEl.dataset.count);
                         targetCount -= 1;
                         targetEl.dataset.count = `${targetCount}`;
                     }
                     if (parseInt(targetEl.dataset.count) === 0) {
-                        (_a = targetEl.parentElement) === null || _a === void 0 ? void 0 : _a.classList.add('sold-out');
+                        if (!targetEl.parentElement) {
+                            return;
+                        }
+                        targetEl.parentElement.classList.add('sold-out');
                         const warning = document.createElement('em');
                         warning.textContent = '해당 상품은 품절입니다.';
                         warning.classList.add('ir');
-                        (_b = targetEl.parentElement) === null || _b === void 0 ? void 0 : _b.insertBefore(warning, targetEl);
+                        (_a = targetEl.parentElement) === null || _a === void 0 ? void 0 : _a.insertBefore(warning, targetEl);
                     }
                 }
                 else {
@@ -131,31 +183,50 @@ export default class VendingMachine {
                 }
             });
         });
-        this.btnGet.addEventListener('click', () => {
+        __classPrivateFieldGet(this, _VendingMachine_btnGet, "f").addEventListener('click', () => {
             let isGot = false;
             let totalPrice = 0;
-            for (const itemStaged of this.stagedList.querySelectorAll('li')) {
-                for (const itemGot of this.gotList.querySelectorAll('li')) {
-                    let itemGotCount = itemGot.querySelector('.num-counter');
-                    if (itemStaged.dataset.item === itemGot.dataset.item) {
-                        itemGotCount.textContent = `${parseInt(itemGotCount.textContent) +
-                            parseInt(itemStaged.querySelector('.num-counter').textContent)}`;
-                        isGot = true;
-                        break;
+            __classPrivateFieldGet(this, _VendingMachine_stagedList, "f")
+                .querySelectorAll('li')
+                .forEach((itemStaged) => {
+                if (!itemStaged.dataset.item) {
+                    return;
+                }
+                __classPrivateFieldGet(this, _VendingMachine_gotList, "f")
+                    .querySelectorAll('li')
+                    .forEach((itemGot) => {
+                    if (!itemGot.dataset.item) {
+                        return;
                     }
-                }
+                    if (itemStaged.dataset.item === itemGot.dataset.item) {
+                        let itemGotCount = itemGot.querySelector('.num-counter');
+                        const stagedQuantity = itemStaged.querySelector('.num-counter');
+                        if (!itemGotCount.textContent || !stagedQuantity.textContent) {
+                            return;
+                        }
+                        itemGotCount.textContent = `${parseInt(itemGotCount.textContent) +
+                            parseInt(stagedQuantity.textContent)}`;
+                        isGot = true;
+                    }
+                });
                 if (!isGot) {
-                    this.gotList.appendChild(itemStaged);
+                    __classPrivateFieldGet(this, _VendingMachine_gotList, "f").appendChild(itemStaged);
                 }
-            }
-            this.stagedList.innerHTML = '';
-            this.gotList.querySelectorAll('li').forEach((itemGot) => {
-                totalPrice +=
-                    parseInt(itemGot.dataset.price) *
-                        parseInt(itemGot.querySelector('.num-counter').textContent);
             });
-            this.txtTotal.textContent = `총금액 : ${new Intl.NumberFormat().format(totalPrice)}원`;
+            __classPrivateFieldGet(this, _VendingMachine_stagedList, "f").querySelectorAll('li').forEach((item) => {
+                if (!item.dataset.price) {
+                    return;
+                }
+                if (!item.querySelector('.num-counter')) {
+                    return;
+                }
+                const itemPrice = parseInt(item.dataset.price);
+                const itemQuantity = parseInt(item.querySelector('.num-counter').textContent);
+                totalPrice += itemPrice * itemQuantity;
+            });
+            __classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent = numberFormat(totalPrice);
         });
     }
 }
+_VendingMachine_balance = new WeakMap(), _VendingMachine_itemList = new WeakMap(), _VendingMachine_inputCostEl = new WeakMap(), _VendingMachine_btnPut = new WeakMap(), _VendingMachine_btnReturn = new WeakMap(), _VendingMachine_btnGet = new WeakMap(), _VendingMachine_stagedList = new WeakMap(), _VendingMachine_myMoney = new WeakMap(), _VendingMachine_gotList = new WeakMap(), _VendingMachine_txtTotal = new WeakMap();
 //# sourceMappingURL=VendingMachine.js.map
