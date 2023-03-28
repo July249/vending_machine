@@ -14,14 +14,16 @@ export default class ColaGenerator {
     });
   }
 
-  async loadData(callback: (arg: ColaItem[]) => void): Promise<void> {
+  private async loadData(callback: (arg: ColaItem[]) => void): Promise<void> {
     const res = await fetch(
       'https://raw.githubusercontent.com/July249/vending_machine/main/public/data/item.json'
     );
     if (res.status === 200) {
       const data = (await res.json()) as ColaItem[];
+      console.log(isColaItem(data));
       if (isColaItem(data)) {
         callback(data);
+        console.log(data);
       }
     } else {
       new Error(`Connect Error: ${res.status}`);
