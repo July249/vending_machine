@@ -68,11 +68,11 @@ export default class VendingMachine {
                 const docFrag = document.createDocumentFragment();
                 const unstagedBtn = targetEl.parentElement;
                 const stagedItemList = __classPrivateFieldGet(this, _VendingMachine_stagedList, "f").querySelectorAll('li');
-                const updatedStagedItemList = Array.prototype.filter.call(stagedItemList, (item) => {
-                    var _a;
-                    if (((_a = item.dataset) === null || _a === void 0 ? void 0 : _a.item) === (unstagedBtn === null || unstagedBtn === void 0 ? void 0 : unstagedBtn.id)) {
+                const updatedStagedItemList = Array.prototype.filter.call(stagedItemList, (stagedItem) => {
+                    if (stagedItem.dataset.item &&
+                        stagedItem.dataset.item === unstagedBtn.id) {
                         // update balance value when unstaged item is clicked and remove item from staged list
-                        const quantityItem = item.querySelector('.num-counter');
+                        const quantityItem = stagedItem.querySelector('.num-counter');
                         if (typeof quantityItem.textContent !== 'string') {
                             return;
                         }
@@ -81,15 +81,30 @@ export default class VendingMachine {
                             return;
                         }
                         let currentBalance = parseInt(__classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent.replaceAll(',', ''));
-                        if (!item.dataset.price) {
+                        if (!stagedItem.dataset.price) {
                             return;
                         }
-                        currentBalance += parseInt(item.dataset.price) * quantity;
+                        currentBalance += parseInt(stagedItem.dataset.price) * quantity;
                         __classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent = numberFormat(currentBalance);
+                        // update itemList quantity value when unstaged item is clicked
+                        const itemList = __classPrivateFieldGet(this, _VendingMachine_itemList, "f").querySelectorAll('li');
+                        const targetEl = Array.prototype.find.call(itemList, (cola) => cola.children[0].children[1].textContent ===
+                            stagedItem.dataset.item);
+                        if (!targetEl.firstElementChild) {
+                            return;
+                        }
+                        let colaQuantity = parseInt(targetEl.firstElementChild.attributes[3].value);
+                        colaQuantity += quantity;
+                        targetEl.firstElementChild.attributes[3].value =
+                            colaQuantity.toString();
+                        targetEl.classList.remove('sold-out');
+                        targetEl.firstElementChild.removeAttribute('disabled');
                     }
-                    return item.dataset.item !== unstagedBtn.id;
+                    return stagedItem.dataset.item !== unstagedBtn.id;
                 });
                 updatedStagedItemList.forEach((list) => docFrag.appendChild(list));
+                // update staged list after clearing staged list
+                __classPrivateFieldGet(this, _VendingMachine_stagedList, "f").innerHTML = '';
                 __classPrivateFieldGet(this, _VendingMachine_stagedList, "f").append(docFrag);
             }
         });
@@ -160,11 +175,16 @@ export default class VendingMachine {
                             return;
                         }
                         if (item.dataset.item === targetEl.dataset.item) {
-                            let quantityItem = item.querySelector('.num-counter');
-                            if (typeof quantityItem.textContent !== 'string') {
+                            if (!targetEl.dataset.count) {
                                 return;
                             }
-                            quantityItem.textContent = `${parseInt(quantityItem.textContent) + 1}`;
+                            if (parseInt(targetEl.dataset.count) > 0) {
+                                let quantityItem = item.querySelector('.num-counter');
+                                if (typeof quantityItem.textContent !== 'string') {
+                                    return;
+                                }
+                                quantityItem.textContent = `${parseInt(quantityItem.textContent) + 1}`;
+                            }
                             isStaged = true;
                             break;
                         }
@@ -176,11 +196,11 @@ export default class VendingMachine {
                         return;
                     }
                     let targetCount = parseInt(targetEl.dataset.count);
-                    if (targetEl.dataset.count && targetCount > 1) {
+                    if (targetEl.dataset.count && targetCount > 0) {
                         targetCount -= 1;
                         targetEl.dataset.count = `${targetCount}`;
                     }
-                    else if (targetEl.dataset.count && targetCount === 1) {
+                    if (targetEl.dataset.count && targetCount === 0) {
                         if (!targetEl.parentElement) {
                             return;
                         }
@@ -189,7 +209,7 @@ export default class VendingMachine {
                         const warning = document.createElement('em');
                         warning.textContent = '해당 상품은 품절입니다.';
                         warning.classList.add('ir');
-                        targetEl.parentElement.insertBefore(warning, targetEl);
+                        targetEl.parentElement.insertAdjacentElement('beforeend', warning);
                     }
                 }
                 else {
