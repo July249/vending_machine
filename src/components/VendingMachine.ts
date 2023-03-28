@@ -304,25 +304,27 @@ export default class VendingMachine {
           }
         });
 
-      this.#stagedList.querySelectorAll('li').forEach((item: HTMLLIElement) => {
-        if (!item.dataset.price) {
+      this.#stagedList.innerHTML = '';
+
+      this.#gotList.querySelectorAll('li').forEach((itemGot: HTMLLIElement) => {
+        if (!itemGot.dataset.price) {
           return;
         }
 
-        if (!item.querySelector('.num-counter')) {
+        if (!itemGot.querySelector('.num-counter')) {
           return;
         }
-        const itemQuantityEl = item.querySelector(
+        const itemGotQuantityEl = itemGot.querySelector(
           '.num-counter'
         ) as HTMLSpanElement;
 
-        const itemPrice = parseInt(item.dataset.price);
-        const itemQuantity = parseInt(itemQuantityEl.textContent || '0');
+        const itemGotPrice = parseInt(itemGot.dataset.price);
+        const itemGotQuantity = parseInt(itemGotQuantityEl.textContent || '0');
 
-        totalPrice += itemPrice * itemQuantity;
+        totalPrice += itemGotPrice * itemGotQuantity;
       });
 
-      this.#txtTotal.textContent = numberFormat(totalPrice);
+      this.#txtTotal.textContent = `총 금액 : ${numberFormat(totalPrice)}원`;
     });
   }
 }
