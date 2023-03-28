@@ -19,7 +19,7 @@
       .sold-out {
         pointer-events: none;
 
-        ::before {
+        &::before {
           display: block;
           position: absolute;
           content: ' ';
@@ -46,7 +46,7 @@
     width: 100%;
     padding: 11px 12px 9px;
 
-    :active {
+    &:active {
       border-radius: 10px;
       outline: 3px solid #6327fe;
     }
@@ -85,7 +85,7 @@
         padding-right: 18px;
         float: right;
 
-        ::after {
+        &::after {
           display: inline-block;
           position: absolute;
           content: '원';
