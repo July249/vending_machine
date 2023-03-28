@@ -140,6 +140,7 @@ export default class VendingMachine {
       }
 
       const inputCost = parseInt(this.#inputCostEl.value);
+
       const myMoneyVal = parseInt(
         this.#myMoney.textContent.replaceAll(',', '')
       );
@@ -160,6 +161,8 @@ export default class VendingMachine {
       } else {
         alert('소지금이 부족합니다.');
       }
+      // clear input value
+      this.#inputCostEl.value = '';
     });
 
     this.#btnReturn.addEventListener('click', () => {
@@ -324,7 +327,7 @@ export default class VendingMachine {
         totalPrice += itemGotPrice * itemGotQuantity;
       });
 
-      this.#txtTotal.textContent = `총 금액 : ${numberFormat(totalPrice)}원`;
+      this.#txtTotal.textContent = `총 금액: ${numberFormat(totalPrice)}원`;
     });
   }
 }
