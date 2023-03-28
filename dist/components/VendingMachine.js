@@ -172,19 +172,20 @@ export default class VendingMachine {
                     if (!isStaged) {
                         this.stagedItemGenerator(targetEl);
                     }
-                    if (targetEl.dataset.count) {
-                        let targetCount = parseInt(targetEl.dataset.count);
-                        targetCount -= 1;
-                        targetEl.dataset.count = `${targetCount}`;
-                    }
                     if (!targetEl.dataset.count) {
                         return;
                     }
-                    if (parseInt(targetEl.dataset.count) === 0) {
+                    let targetCount = parseInt(targetEl.dataset.count);
+                    if (targetEl.dataset.count && targetCount > 1) {
+                        targetCount -= 1;
+                        targetEl.dataset.count = `${targetCount}`;
+                    }
+                    else if (targetEl.dataset.count && targetCount === 1) {
                         if (!targetEl.parentElement) {
                             return;
                         }
                         targetEl.parentElement.classList.add('sold-out');
+                        targetEl.disabled = true;
                         const warning = document.createElement('em');
                         warning.textContent = '해당 상품은 품절입니다.';
                         warning.classList.add('ir');
