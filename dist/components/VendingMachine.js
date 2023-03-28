@@ -71,6 +71,7 @@ export default class VendingMachine {
                 const updatedStagedItemList = Array.prototype.filter.call(stagedItemList, (item) => {
                     var _a;
                     if (((_a = item.dataset) === null || _a === void 0 ? void 0 : _a.item) === (unstagedBtn === null || unstagedBtn === void 0 ? void 0 : unstagedBtn.id)) {
+                        // update balance value when unstaged item is clicked and remove item from staged list
                         const quantityItem = item.querySelector('.num-counter');
                         if (typeof quantityItem.textContent !== 'string') {
                             return;
@@ -89,7 +90,6 @@ export default class VendingMachine {
                     return item.dataset.item !== unstagedBtn.id;
                 });
                 updatedStagedItemList.forEach((list) => docFrag.appendChild(list));
-                __classPrivateFieldGet(this, _VendingMachine_stagedList, "f").innerHTML = '';
                 __classPrivateFieldGet(this, _VendingMachine_stagedList, "f").append(docFrag);
             }
         });
