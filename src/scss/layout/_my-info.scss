@@ -4,16 +4,16 @@
 .my-info {
   flex-basis: abstract.rem(360);
   padding: abstract.rem(31) abstract.rem(27) abstract.rem(28);
-  background-color: #fff;
+  background-color: var(--app-color);
 
   .cont-mymoney {
     margin-bottom: abstract.rem(20);
-    background-color: #fff;
+    background-color: var(--app-color);
   }
 
   .info-mymoney {
     padding: abstract.rem(6) abstract.rem(10);
-    background-color: #eae8fe;
+    background-color: var(--bg-color);
     border-radius: abstract.rem(5);
     line-height: abstract.rem(20);
 
@@ -24,7 +24,7 @@
   }
 
   .cont-myitems {
-    background-color: #fff;
+    background-color: var(--app-color);
 
     .tit-myitem {
       display: block;

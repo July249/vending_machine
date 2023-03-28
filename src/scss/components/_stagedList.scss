@@ -3,14 +3,14 @@
 @mixin stagedList {
   border-radius: abstract.rem(5);
   overflow-y: scroll;
-  border: abstract.rem(1) solid #bdbdbd;
+  border: abstract.rem(1) solid var(--border-color);
   border-radius: abstract.rem(5);
-  background-color: #eae8fe;
+  background-color: var(--bg-color);
   padding: abstract.rem(8) abstract.rem(8) abstract.rem(8) abstract.rem(12);
 
   li {
     border-radius: abstract.rem(5);
-    background-color: #fff;
+    background-color: var(--app-color);
 
     + li {
       margin-top: abstract.rem(6);
@@ -37,7 +37,7 @@
     align-items: center;
     width: abstract.rem(30);
     height: abstract.rem(30);
-    border: abstract.rem(1) solid #bdbdbd;
+    border: abstract.rem(1) solid var(--border-color);
     border-radius: abstract.rem(5);
   }
 
@@ -73,7 +73,7 @@
   }
   &::-webkit-scrollbar-thumb {
     border-radius: abstract.rem(50);
-    background: #a2a2a2;
+    background: var(--scrollbar-color);
   }
   &::-webkit-scrollbar-track {
     background: transparent;

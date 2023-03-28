@@ -48,7 +48,7 @@
 
     &:active {
       border-radius: abstract.rem(10);
-      outline: abstract.rem(3) solid #6327fe;
+      outline: abstract.rem(3) solid var(--active-color);
     }
   }
 
@@ -63,9 +63,9 @@
     display: block;
     padding: abstract.rem(5) abstract.rem(15);
     font-size: abstract.rem(12);
-    background-color: #6327fe;
+    background-color: var(--active-color);
     border-radius: abstract.rem(50);
-    color: #fff;
+    color: var(--app-color);
   }
 
   .cont-buy {
@@ -79,7 +79,7 @@
       border-radius: abstract.rem(5);
       position: relative;
       padding: abstract.rem(6) abstract.rem(10);
-      background-color: #eae8fe;
+      background-color: var(--bg-color);
 
       .txt-balance {
         padding-right: abstract.rem(18);
@@ -99,7 +99,7 @@
       grid-column: 1 / 3;
       border-radius: abstract.rem(5);
       padding: abstract.rem(6);
-      border: abstract.rem(1) solid #bdbdbd;
+      border: abstract.rem(1) solid var(--border-color);
     }
 
     .list-item-staged {
@@ -126,7 +126,7 @@
       box-shadow: 0 0 abstract.rem(4) rgba(0, 0, 0, 0.5);
       font-size: abstract.rem(13);
       color: #fff;
-      background-color: #6327fe;
+      background-color: var(--active-color);
     }
   }
 }
