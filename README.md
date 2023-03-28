@@ -36,7 +36,7 @@ $ npm install
 
 ### 기술
 
-- HTML, CSS, JavaScript, TypeScript, Webpack, NPM
+- HTML, CSS, Sass JavaScript, TypeScript, Webpack, NPM
 
 ### 배포
 
@@ -46,7 +46,90 @@ $ npm install
 
 ## 폴더 구조
 
-  <details><summary>폴더 구조 보기</summary>
+<details><summary>v1.3 폴더 구조 보기</summary>
+
+```txt
+├── dist
+│   ├── bundle.js
+│   ├── components
+│   │   ├── ColaGenerator.js
+│   │   ├── ColaGenerator.js.map
+│   │   ├── VendingMachine.js
+│   │   └── VendingMachine.js.map
+│   ├── main.js
+│   ├── main.js.map
+│   ├── style.css
+│   ├── style.css.map
+│   ├── types
+│   │   ├── colaItem.js
+│   │   ├── colaItem.js.map
+│   │   ├── data.js
+│   │   ├── data.js.map
+│   │   └── typeGuard
+│   │       ├── isColaItem.js
+│   │       ├── isColaItem.js.map
+│   │       ├── isData.js
+│   │       └── isData.js.map
+│   └── util
+│       ├── numberFormat.js
+│       └── numberFormat.js.map
+├── node_modules
+│   └── ...
+├── package-lock.json
+├── package.json
+├── public
+│   └── data
+│       └── item.json
+├── src
+│   ├── assets
+│   │   └── img
+│   │       ├── Logo.png
+│   │       ├── coke_blue.png
+│   │       ├── coke_green.png
+│   │       ├── coke_orange.png
+│   │       ├── coke_purple.png
+│   │       ├── coke_red.png
+│   │       ├── coke_yellow.png
+│   │       └── sold_out.png
+│   ├── components
+│   │   ├── ColaGenerator.ts
+│   │   └── VendingMachine.ts
+│   ├── main.ts
+│   ├── scss
+│   │   ├── abstracts
+│   │   │   ├── _breakpoints.scss
+│   │   │   ├── _colors.scss
+│   │   │   ├── _fonts.scss
+│   │   │   ├── _functions.scss
+│   │   │   └── _index.scss
+│   │   ├── base
+│   │   │   ├── _boilerplate.scss
+│   │   │   ├── _index.scss
+│   │   │   └── _reset.scss
+│   │   ├── components
+│   │   │   ├── _index.scss
+│   │   │   ├── _ir.scss
+│   │   │   └── _stagedList.scss
+│   │   ├── layout
+│   │   │   ├── _index.scss
+│   │   │   ├── _logo.scss
+│   │   │   ├── _my-info.scss
+│   │   │   └── _vending-machine.scss
+│   │   └── style.scss
+│   ├── types
+│   │   ├── colaItem.ts
+│   │   └── typeGuard
+│   │       └── isColaItem.ts
+│   └── util
+│       └── numberFormat.ts
+├── tsconfig.json
+└── webpack.config.js
+
+```
+
+</details>
+
+<details><summary>v1.1 폴더 구조 보기</summary>
 
 ```txt
 ├── dist
@@ -90,7 +173,7 @@ $ npm install
 
 ```
 
-  </details>
+</details>
 
 <br />
 
@@ -175,6 +258,21 @@ $ npm install
 - 해당 버튼 클릭 시, Array.built-in API인 filter를 이용하여 리스트에서 삭제하는 기능 구현
 - NodeList에서는 filter API를 제공하지 않으므로 Array의 call API를 이용하여 this 바인딩을 NodeList로 지정하여 Array의 filter API를 사용하였음
 
+[한계]
+
+- 상품을 장바구니에서 제거하였음에도 불구하고 자판기에서의 콜라 수량은 다시 채워지지 않았음
+
+### 상품 반환시 자판기의 수량으로 다시 채워지도록 구현
+
+[문제점]
+
+- "환불 기능 추가"에서의 한계점을 개선하기 위함
+
+[해결]
+
+- 반환하고자 하는 상품을 클릭하면 장바구니에 넣어 놓았던 수량만큼 다시 자판기에 채워짐
+- 만일 Sold Out 상태라면 다시 반환한 경우 다시 상품을 구입할 수 있도록 구현함
+
 ### 타입스크립트 적용
 
 [문제점]
@@ -183,11 +281,14 @@ $ npm install
 
 [해결]
 
+- 런타임 이전에 코드상에서 발생할 수 있는 문제를 미연에 방지할 수 있음
 - 유지보수성 향상과 함께 코드의 가독성 향상을 위해 정적 타입으로 타입을 지정하였음
+- 견고한 코드 작성이 가능해짐
 
 [한계]
 
 - 아직 타입스크립트에 익숙하지 못한 상태이기에 지양해야하는 코드 스타일의 사용이 많았음 => 지속적으로 개선시킬 예정
+- 기능 구현은 모두 진행함 => 기능별로 별도의 함수를 분리하여 코드의 가독성을 높여야할 필요가 있음
 
 ### 웹팩을 이용한 bundle 생성 및 배포
 
@@ -209,3 +310,44 @@ $ npm install
 
 - 문제를 해결하기 위해 ts.config와 webpack.config 설정을 최신 es 모듈 및 experiments 모듈 설정을 가져옴
 - es5 또는 es2017 이전 버전에 대한 브라우저 지원은 불가함 => babel을 이용하여 Down-Grade 버전으로 변환을 해야함 (버전 다운을 진행하지는 않을 예정임)
+
+### 스타일시트 Sass로 변경함에 따른 이점
+
+[문제점]
+
+- style.css에 스타일 코드를 모아 놓음으로써 관리가 어려움
+- reset.css와 style.css를 분리하여 놓았기 때문에 소스코드가 2개가 됨
+
+[해결]
+
+- 문제를 해결하기 위해 Sass(Scss)를 사용하여 배포 단에서 dist/style.css 하나로 스타일이 모두 적용될 수 있도록 함
+- 스타일에 대한 체계적 관리가 가능함 (7-1 패턴 차용)
+- 추상화 단에서 색, 폰트, 반응형 포인트 지정 등의 추상화 진행 => 스타일 변수 관리의 편리성 증진
+- 기본 레이아웃을 잡기 위해 base 폴더로 스타일 관리
+- 컴포넌트로 관리함에 따라 중복되는 코드 스타일을 제거함
+- 컴포넌트 스타일의 재사용과 layout으로 구분한 영역들에 대해 적재적소에서 스타일을 적용할 수 있게 됨
+- Scss에서 지원하는 함수 만들기를 이용하여 직접 커스텀한 rem함수를 이용하여 스타일 코드의 px값을 반응형에 적합한 rem unit으로 쉽게 변환함
+
+### util 제작을 통한 인스턴스 API 재사용
+
+[문제점]
+
+- 숫자를 화폐 단위로 변환하기 위해 필요할 때마다 `new Intl.NumberFormat().format()`API를 호출하여 사용하였음
+- 불필요하게 클래스에 대한 인스턴스를 생성하여 메서드를 이용함
+
+[해결]
+
+- 클래스의 인스턴스를 만들어 해당 인스턴스에 대한 API를 사용하도록 함
+
+### 받아오는 외부 데이터의 타입을 지정해주는 Type Guard 생성
+
+[문제점]
+
+- fetch를 이용하여 JSON 데이터를 호출하는 과정에서 받아온 데이터가 ColaItem 타입에 대한 배열 형태임을 보장하지 못함
+- 받아오는 데이터가 ColaItem[] 타입임을 보장하기 위한 타입 가드가 필요함
+  됨
+  [해결]
+
+- 받아온 데이터가 배열 형태이고, 길이가 0보다 크며, 각 key 값들이 존재한다는 전제를 설정
+- isColaItem에서 true가 반환되는 경우 데이터의 타입은 ColaItem[]이 됨
+- false인 경우 그러하지 않게 됨
