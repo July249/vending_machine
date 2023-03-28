@@ -92,6 +92,7 @@ export default class VendingMachine {
         const updatedStagedItemList: HTMLLIElement[] =
           Array.prototype.filter.call(stagedItemList, (item: HTMLLIElement) => {
             if (item.dataset?.item === unstagedBtn?.id) {
+              // update balance value when unstaged item is clicked and remove item from staged list
               const quantityItem = item.querySelector(
                 '.num-counter'
               ) as HTMLSpanElement;
@@ -123,7 +124,6 @@ export default class VendingMachine {
           docFrag.appendChild(list)
         );
 
-        this.#stagedList.innerHTML = '';
         this.#stagedList.append(docFrag);
       }
     });
