@@ -64,18 +64,18 @@
   border-bottom: 4px solid transparent;
 
   // Scrollbar style
-  ::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     width: 4px;
   }
-  ::-webkit-scrollbar-button {
+  &::-webkit-scrollbar-button {
     width: 0;
     height: 0;
   }
-  ::-webkit-scrollbar-thumb {
+  &::-webkit-scrollbar-thumb {
     border-radius: 50px;
-    background: #fff;
+    background: #a2a2a2;
   }
-  ::-webkit-scrollbar-track {
+  &::-webkit-scrollbar-track {
     background: transparent;
   }
 
