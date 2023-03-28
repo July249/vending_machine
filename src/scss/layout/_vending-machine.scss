@@ -30,7 +30,8 @@
           z-index: 1;
           border-radius: abstract.rem(10);
           background: no-repeat center/abstract.rem(60) abstract.rem(46)
-            url('/src/assets/img/sold_out.png') rgba(0, 0, 0, 0.8);
+            url('https://raw.githubusercontent.com/July249/vending_machine/main/src/assets/img/sold_out.png')
+            rgba(0, 0, 0, 0.8);
         }
       }
     }
