@@ -90,40 +90,70 @@ export default class VendingMachine {
         const stagedItemList = this.#stagedList.querySelectorAll('li');
 
         const updatedStagedItemList: HTMLLIElement[] =
-          Array.prototype.filter.call(stagedItemList, (item: HTMLLIElement) => {
-            if (item.dataset?.item === unstagedBtn?.id) {
-              // update balance value when unstaged item is clicked and remove item from staged list
-              const quantityItem = item.querySelector(
-                '.num-counter'
-              ) as HTMLSpanElement;
+          Array.prototype.filter.call(
+            stagedItemList,
+            (stagedItem: HTMLLIElement) => {
+              if (
+                stagedItem.dataset.item &&
+                stagedItem.dataset.item === unstagedBtn.id
+              ) {
+                // update balance value when unstaged item is clicked and remove item from staged list
+                const quantityItem = stagedItem.querySelector(
+                  '.num-counter'
+                ) as HTMLSpanElement;
 
-              if (typeof quantityItem.textContent !== 'string') {
-                return;
+                if (typeof quantityItem.textContent !== 'string') {
+                  return;
+                }
+                const quantity = parseInt(quantityItem.textContent);
+
+                if (!this.#balance.textContent) {
+                  return;
+                }
+                let currentBalance = parseInt(
+                  this.#balance.textContent.replaceAll(',', '')
+                );
+
+                if (!stagedItem.dataset.price) {
+                  return;
+                }
+                currentBalance += parseInt(stagedItem.dataset.price) * quantity;
+
+                this.#balance.textContent = numberFormat(currentBalance);
+
+                // update itemList quantity value when unstaged item is clicked
+                const itemList = this.#itemList.querySelectorAll('li');
+                const targetEl: HTMLLIElement = Array.prototype.find.call(
+                  itemList,
+                  (cola: HTMLLIElement) =>
+                    cola.children[0].children[1].textContent ===
+                    stagedItem.dataset.item
+                );
+                if (!targetEl.firstElementChild) {
+                  return;
+                }
+                let colaQuantity = parseInt(
+                  targetEl.firstElementChild.attributes[3].value
+                );
+
+                colaQuantity += quantity;
+
+                targetEl.firstElementChild.attributes[3].value =
+                  colaQuantity.toString();
+
+                targetEl.classList.remove('sold-out');
+                targetEl.firstElementChild.removeAttribute('disabled');
               }
-              const quantity = parseInt(quantityItem.textContent);
-
-              if (!this.#balance.textContent) {
-                return;
-              }
-
-              let currentBalance = parseInt(
-                this.#balance.textContent.replaceAll(',', '')
-              );
-
-              if (!item.dataset.price) {
-                return;
-              }
-              currentBalance += parseInt(item.dataset.price) * quantity;
-
-              this.#balance.textContent = numberFormat(currentBalance);
+              return stagedItem.dataset.item !== unstagedBtn.id;
             }
-            return item.dataset.item !== unstagedBtn.id;
-          });
+          );
 
         updatedStagedItemList.forEach((list: HTMLLIElement) =>
           docFrag.appendChild(list)
         );
 
+        // update staged list after clearing staged list
+        this.#stagedList.innerHTML = '';
         this.#stagedList.append(docFrag);
       }
     });
@@ -217,17 +247,21 @@ export default class VendingMachine {
             if (!item.dataset.item || !targetEl.dataset.item) {
               return;
             }
-
             if (item.dataset.item === targetEl.dataset.item) {
-              let quantityItem = item.querySelector(
-                '.num-counter'
-              ) as HTMLElement;
-              if (typeof quantityItem.textContent !== 'string') {
+              if (!targetEl.dataset.count) {
                 return;
               }
-              quantityItem.textContent = `${
-                parseInt(quantityItem.textContent) + 1
-              }`;
+              if (parseInt(targetEl.dataset.count) > 0) {
+                let quantityItem = item.querySelector(
+                  '.num-counter'
+                ) as HTMLElement;
+                if (typeof quantityItem.textContent !== 'string') {
+                  return;
+                }
+                quantityItem.textContent = `${
+                  parseInt(quantityItem.textContent) + 1
+                }`;
+              }
               isStaged = true;
               break;
             }
@@ -242,10 +276,11 @@ export default class VendingMachine {
           }
           let targetCount = parseInt(targetEl.dataset.count);
 
-          if (targetEl.dataset.count && targetCount > 1) {
+          if (targetEl.dataset.count && targetCount > 0) {
             targetCount -= 1;
             targetEl.dataset.count = `${targetCount}`;
-          } else if (targetEl.dataset.count && targetCount === 1) {
+          }
+          if (targetEl.dataset.count && targetCount === 0) {
             if (!targetEl.parentElement) {
               return;
             }
@@ -256,7 +291,7 @@ export default class VendingMachine {
             const warning = document.createElement('em');
             warning.textContent = '해당 상품은 품절입니다.';
             warning.classList.add('ir');
-            targetEl.parentElement.insertBefore(warning, targetEl);
+            targetEl.parentElement.insertAdjacentElement('beforeend', warning);
           }
         } else {
           alert('잔액이 부족합니다! 입금해주세요~');
