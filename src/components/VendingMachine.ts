@@ -119,7 +119,8 @@ export default class VendingMachine {
                 }
                 currentBalance += parseInt(stagedItem.dataset.price) * quantity;
 
-                this.#balance.textContent = numberFormat(currentBalance);
+                this.#balance.textContent =
+                  numberFormat(currentBalance).toString();
 
                 // update itemList quantity value when unstaged item is clicked
                 const itemList = this.#itemList.querySelectorAll('li');
@@ -191,7 +192,7 @@ export default class VendingMachine {
         this.#myMoney.textContent = numberFormat(changedValue) + ' 원';
         this.#balance.textContent = numberFormat(
           (balanceVal ? balanceVal : 0) + inputCost
-        );
+        ).toString();
       } else {
         alert('소지금이 부족합니다.');
       }
@@ -245,7 +246,7 @@ export default class VendingMachine {
 
         if (balanceVal >= targetElPrice) {
           const withdraw = balanceVal - targetElPrice;
-          this.#balance.textContent = numberFormat(withdraw);
+          this.#balance.textContent = numberFormat(withdraw).toString();
 
           for (const item of stagedListItem) {
             if (!item.dataset.item || !targetEl.dataset.item) {
