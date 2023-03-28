@@ -117,6 +117,8 @@ export default class VendingMachine {
             else {
                 alert('소지금이 부족합니다.');
             }
+            // clear input value
+            __classPrivateFieldGet(this, _VendingMachine_inputCostEl, "f").value = '';
         });
         __classPrivateFieldGet(this, _VendingMachine_btnReturn, "f").addEventListener('click', () => {
             if (typeof __classPrivateFieldGet(this, _VendingMachine_balance, "f").textContent !== 'string') {
@@ -237,7 +239,7 @@ export default class VendingMachine {
                 const itemGotQuantity = parseInt(itemGotQuantityEl.textContent || '0');
                 totalPrice += itemGotPrice * itemGotQuantity;
             });
-            __classPrivateFieldGet(this, _VendingMachine_txtTotal, "f").textContent = `총 금액 : ${numberFormat(totalPrice)}원`;
+            __classPrivateFieldGet(this, _VendingMachine_txtTotal, "f").textContent = `총 금액: ${numberFormat(totalPrice)}원`;
         });
     }
 }
