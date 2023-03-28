@@ -14,7 +14,7 @@ export default class ColaGenerator {
     });
   }
 
-  async loadData(callback: (arg: ColaItem[]) => void): Promise<void> {
+  private async loadData(callback: (arg: ColaItem[]) => void): Promise<void> {
     const res = await fetch(
       'https://raw.githubusercontent.com/July249/vending_machine/main/public/data/item.json'
     );
@@ -23,13 +23,12 @@ export default class ColaGenerator {
       if (isColaItem(data)) {
         callback(data);
       }
-      Array.isArray(data);
     } else {
       new Error(`Connect Error: ${res.status}`);
     }
   }
 
-  colaFactory(data: ColaItem[] /* JSON data */): void {
+  private colaFactory(data: ColaItem[] /* JSON data */): void {
     const docFrag = document.createDocumentFragment();
 
     data.forEach((el: ColaItem) => {
