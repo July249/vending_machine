@@ -51,13 +51,13 @@ export default class VendingMachine {
   private stagedItemGenerator(target: HTMLElement): void {
     const stagedItem = document.createElement('li');
 
-    stagedItem.dataset.item = target.dataset.item!;
-    stagedItem.dataset.price = target.dataset.price!;
+    stagedItem.dataset.item = target.dataset.item || '';
+    stagedItem.dataset.price = target.dataset.price || '0';
     stagedItem.innerHTML = `
       <button type="button" class="btn-staged">
         <img src="" alt="" class="img-item">
         <strong class="txt-item"></strong>
-        <span class="num-counter">1</span>
+        <span class="num-counter"></span>
         <div class="btn-unstaged"><i class="fa-solid fa-circle-minus" style="color: #f03f3f;"></i></div>
       </button>
     `;
@@ -101,15 +101,22 @@ export default class VendingMachine {
               }
               const quantity = parseInt(quantityItem.textContent);
 
+              if (!this.#balance.textContent) {
+                return;
+              }
+
               let currentBalance = parseInt(
-                this.#balance.textContent?.replaceAll(',', '')!
+                this.#balance.textContent.replaceAll(',', '')
               );
 
-              currentBalance += parseInt(item.dataset?.price!) * quantity;
+              if (!item.dataset.price) {
+                return;
+              }
+              currentBalance += parseInt(item.dataset.price) * quantity;
 
               this.#balance.textContent = numberFormat(currentBalance);
             }
-            return item.dataset?.item !== unstagedBtn?.id!;
+            return item.dataset.item !== unstagedBtn.id;
           });
 
         updatedStagedItemList.forEach((list: HTMLLIElement) =>
@@ -164,10 +171,10 @@ export default class VendingMachine {
       }
 
       const balanceVal = parseInt(
-        this.#balance.textContent!.replaceAll(',', '')
+        this.#balance.textContent.replaceAll(',', '')
       );
       const myMoneyVal = parseInt(
-        this.#myMoney.textContent!.replaceAll(',', '')
+        this.#myMoney.textContent.replaceAll(',', '')
       );
 
       if (balanceVal) {
@@ -184,8 +191,12 @@ export default class VendingMachine {
     btnsCola.forEach((item: HTMLButtonElement) => {
       item.addEventListener('click', (e: MouseEvent) => {
         const targetEl = e.currentTarget as HTMLButtonElement;
+
+        if (!this.#balance.textContent) {
+          return;
+        }
         const balanceVal = parseInt(
-          this.#balance.textContent!.replaceAll(',', '')
+          this.#balance.textContent.replaceAll(',', '')
         );
 
         let isStaged = false;
@@ -207,7 +218,7 @@ export default class VendingMachine {
             if (item.dataset.item === targetEl.dataset.item) {
               let quantityItem = item.querySelector(
                 '.num-counter'
-              )! as HTMLElement;
+              ) as HTMLElement;
               if (typeof quantityItem.textContent !== 'string') {
                 return;
               }
@@ -229,16 +240,20 @@ export default class VendingMachine {
             targetEl.dataset.count = `${targetCount}`;
           }
 
-          if (parseInt(targetEl.dataset.count!) === 0) {
+          if (!targetEl.dataset.count) {
+            return;
+          }
+
+          if (parseInt(targetEl.dataset.count) === 0) {
             if (!targetEl.parentElement) {
               return;
             }
             targetEl.parentElement.classList.add('sold-out');
 
-            const warning = document.createElement('em')! as HTMLElement;
+            const warning = document.createElement('em');
             warning.textContent = '해당 상품은 품절입니다.';
             warning.classList.add('ir');
-            targetEl.parentElement?.insertBefore(warning, targetEl);
+            targetEl.parentElement.insertBefore(warning, targetEl);
           }
         } else {
           alert('잔액이 부족합니다! 입금해주세요~');
@@ -297,16 +312,17 @@ export default class VendingMachine {
         if (!item.querySelector('.num-counter')) {
           return;
         }
+        const itemQuantityEl = item.querySelector(
+          '.num-counter'
+        ) as HTMLSpanElement;
 
         const itemPrice = parseInt(item.dataset.price);
-        const itemQuantity = parseInt(
-          item.querySelector('.num-counter')!.textContent!
-        );
+        const itemQuantity = parseInt(itemQuantityEl.textContent || '0');
 
         totalPrice += itemPrice * itemQuantity;
       });
 
-      this.#balance.textContent = numberFormat(totalPrice);
+      this.#txtTotal.textContent = numberFormat(totalPrice);
     });
   }
 }
