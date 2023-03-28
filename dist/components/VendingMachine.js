@@ -224,19 +224,20 @@ export default class VendingMachine {
                     __classPrivateFieldGet(this, _VendingMachine_gotList, "f").appendChild(itemStaged);
                 }
             });
-            __classPrivateFieldGet(this, _VendingMachine_stagedList, "f").querySelectorAll('li').forEach((item) => {
-                if (!item.dataset.price) {
+            __classPrivateFieldGet(this, _VendingMachine_stagedList, "f").innerHTML = '';
+            __classPrivateFieldGet(this, _VendingMachine_gotList, "f").querySelectorAll('li').forEach((itemGot) => {
+                if (!itemGot.dataset.price) {
                     return;
                 }
-                if (!item.querySelector('.num-counter')) {
+                if (!itemGot.querySelector('.num-counter')) {
                     return;
                 }
-                const itemQuantityEl = item.querySelector('.num-counter');
-                const itemPrice = parseInt(item.dataset.price);
-                const itemQuantity = parseInt(itemQuantityEl.textContent || '0');
-                totalPrice += itemPrice * itemQuantity;
+                const itemGotQuantityEl = itemGot.querySelector('.num-counter');
+                const itemGotPrice = parseInt(itemGot.dataset.price);
+                const itemGotQuantity = parseInt(itemGotQuantityEl.textContent || '0');
+                totalPrice += itemGotPrice * itemGotQuantity;
             });
-            __classPrivateFieldGet(this, _VendingMachine_txtTotal, "f").textContent = numberFormat(totalPrice);
+            __classPrivateFieldGet(this, _VendingMachine_txtTotal, "f").textContent = `총 금액 : ${numberFormat(totalPrice)}원`;
         });
     }
 }
