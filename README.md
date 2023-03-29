@@ -193,7 +193,7 @@ $ npm install
   
 | 2. 음료 뽑기 |
 | :---------: |
-| <img src="https://user-images.githubusercontent.com/90930391/227786300-6468f0ae-360d-463c-92d2-774974929c70.gif" width="470" /> |
+| <img src="https://user-images.githubusercontent.com/90930391/228534753-58aa25a6-b09f-4053-b2f4-e91964d5a641.gif" width="470" /> |
   
 </div>
 
@@ -204,7 +204,7 @@ $ npm install
   
 | 3. 음료 획득하기 |
 | :---------: |
-| <img src="https://user-images.githubusercontent.com/90930391/227786313-d1de7f9b-350e-4fe9-ba7f-9d1755e83fd8.gif" width="470" /> |
+| <img src="https://user-images.githubusercontent.com/90930391/228534840-78705397-ce97-435a-9687-034f5cbb6897.gif" width="470" /> |
 
 </div>
 
@@ -214,8 +214,8 @@ $ npm install
   
 | 4. Sold Out |
 | :---------: |
-| <img src="https://user-images.githubusercontent.com/90930391/227786328-3336a560-2e1f-4e2d-9cd7-50c83bfc1953.gif" width="470" /> |
-  
+| <img src="https://user-images.githubusercontent.com/90930391/228534971-ea8fec21-ccae-4bd8-ac86-cf31b3e7b946.gif" width="470" /> |
+
 </div>
 
 - 음료가 모두 소진되면, "Sold-Out" 메시지가 자판기의 음료 버튼에 표시되고, 더 이상 클릭이 되지 않습니다.
@@ -224,17 +224,17 @@ $ npm install
   
 | 5. 거스름돈 반환 |
 | :---------: |
-| <img src="https://user-images.githubusercontent.com/90930391/227786343-893f0f92-c77f-489a-b956-c4b594b5eac1.gif" width="470" /> |
-  
+| <img src="https://user-images.githubusercontent.com/90930391/228535052-d1105955-b712-486c-8b34-2f7eaf14ec5f.gif" width="470" /> |
+
 </div>
 
 - 입금한 금액 중 잔액을 다시 "소지금"으로 돌려 놓고 싶은 경우 "거스름돈 반환" 버튼을 클릭합니다.
 
 <div align="center">
   
-| 6. 환불 하기 |
+| 6. 음료 반환 하기 |
 | :---------: |
-| <img src="https://user-images.githubusercontent.com/90930391/227824087-5fab94c3-dd89-45d4-823b-3bbd777235e3.gif" width="470" /> |
+| <img src="https://user-images.githubusercontent.com/90930391/228535177-27e3367e-a30f-4f0b-879d-fdabf08a6e43.gif" width="470" /> |
   
 </div>
 
