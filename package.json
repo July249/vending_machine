@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/July249/vending_machine#readme",
   "dependencies": {
-    "node-sass": "^8.0.0"
+    "node-sass": "^8.0.0",
+    "sass-loader": "^13.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",
