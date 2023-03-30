@@ -1,5 +1,15 @@
 # Vending Machine with TypeScript
 
+## Contents
+
+1. [프로젝트 소개](#프로젝트-소개)
+2. [📆 개발 일정](#📆-개발-일정)
+3. [프로젝트 실행 방법](#프로젝트-실행-방법)
+4. [개발 환경](#개발-환경)
+5. [폴더 구조](#폴더-구조)
+6. [⚙️ 구현 기능](#⚙️-구현-기능)
+7. [v1.0.0 이후 개선 사항](#v1.0.0-이후-개선-사항)
+
 ## 📎 배포 URL:
 
 - [https://july249.github.io/vending_machine/](https://july249.github.io/vending_machine/)
